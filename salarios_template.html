@@ -1,0 +1,141 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Consejos de Salarios: ajustes por grupo, próximos aumentos y comparativa</title>
+<meta name="description" content="Ajustes salariales pactados en los Consejos de Salarios de Uruguay por grupo y subgrupo: próximos aumentos, calculadora, comparativa entre rubros, evolución frente a la inflación y todas las actas y convenios.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f4f4f0;--surface:#fff;--fg:#1a1c1f;--muted:#5e636b;--rule:#dcdcd4;--accent:#0f5e6e;--accent2:#a1461a;--good:#1f6f4a;--bad:#a12b2b;--hl:#e5f0f1;--bar:#0f5e6e;
+--display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#121414;--surface:#1b1e1e;--fg:#e9ecea;--muted:#a0a7a5;--rule:#313636;--accent:#7cc9d6;--accent2:#eba070;--good:#76d0a2;--bad:#f08a8a;--hl:#1d2c2f;--bar:#7cc9d6;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding:28px max(16px,env(safe-area-inset-left,0px)) 64px max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:26px}.wrap>*{min-width:0}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(32px,5.6vw,54px)/.96 var(--display);font-stretch:78%;margin:8px 0}
+h2{font:700 24px/1.1 var(--display);font-stretch:85%;margin:0 0 4px}
+.lede{color:var(--muted);max-width:72ch;margin:0}.muted{color:var(--muted);font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px}.kpi b{display:block;font:700 28px/1 var(--display)}.kpi span{font-size:13px;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:12px}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+label{display:grid;gap:4px;font-size:13px;color:var(--muted);font-weight:600}
+input,select{font:inherit;padding:10px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--fg);width:100%}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font:600 12px var(--mono);color:var(--muted);text-transform:uppercase;white-space:nowrap}th.s{cursor:pointer}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{font:500 11.5px var(--mono);padding:2px 6px;border-radius:4px;border:1px solid currentColor;white-space:nowrap;color:var(--accent)}
+.res{background:var(--hl);border-radius:8px;padding:14px;font-size:15px}.res b{font:700 26px/1.1 var(--display)}
+.bars{display:grid;gap:6px}.bar{display:grid;grid-template-columns:minmax(120px,34%) 1fr 56px;gap:8px;align-items:center;font-size:13.5px}
+.bar i{display:block;height:14px;border-radius:3px;background:var(--bar)}.bar span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+svg text{fill:var(--muted);font:11px var(--body)}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted)}.legend i{display:inline-block;width:14px;height:3px;vertical-align:middle;margin-right:6px}
+details{border-top:1px solid var(--rule);padding:8px 0}summary{cursor:pointer;font-weight:600}
+a{color:var(--accent)}.links{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px}
+.cta{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px;display:grid;gap:8px}
+.btn{justify-self:start;background:var(--accent);color:var(--surface);padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}
+footer{font-size:13px;color:var(--muted)}.good{color:var(--good)}.bad{color:var(--bad)}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">Consejos de Salarios · actualizado {{FECHA}}</div><h1>Salarios UY</h1>
+<p class="lede">Los ajustes pactados en cada grupo y subgrupo de los Consejos de Salarios, leídos de las actas publicadas en el Diario Oficial: próximos aumentos, calculadora, comparativa entre rubros y evolución frente a la inflación.</p>
+<p class="links" style="margin-top:8px"><a href="../">← Pulso del Sur</a><a href="#proximos">Próximos ajustes</a><a href="#calc">Calculadora</a><a href="#comparar">Comparar rubros</a><a href="#evolucion">Evolución</a><a href="#actas">Actas y convenios</a></p></header>
+<section class="kpis" id="kpis"></section>
+
+<section class="box" id="proximos"><h2>Próximos ajustes</h2>
+<p class="muted" style="margin:0">Aumentos con fecha en los próximos meses, según el acta vigente de cada subgrupo. En la ronda actual los ajustes suelen variar por <b>franja salarial</b> (nivel 1 = salarios más bajos).</p>
+<div class="tw"><table><thead><tr><th>Fecha</th><th>Grupo</th><th>Subgrupo</th><th class="n">Nivel 1</th><th class="n">Nivel 2</th><th class="n">Nivel 3</th><th></th></tr></thead><tbody id="ptab"></tbody></table></div></section>
+
+<section class="box" id="calc"><h2>¿Cuánto me aumentan?</h2>
+<div class="ctl"><label>Grupo<select id="cg"></select></label><label>Subgrupo<select id="cs"></select></label>
+<label>Franja<select id="cn"><option value="1">Nivel 1 (salarios más bajos)</option><option value="2">Nivel 2</option><option value="3">Nivel 3 (salarios más altos)</option></select></label>
+<label>Salario nominal actual ($)<input id="cv" type="number" min="0" step="100" value="40000"></label></div>
+<div class="res" id="cres"></div>
+<p class="muted" style="margin:0">La franja depende de cuánto ganás; los topes de cada nivel están en el acta. No incluye correctivos por inflación, que se aplican al final de cada período si corresponde.</p></section>
+
+<section class="box" id="comparar"><h2>Comparar rubros</h2>
+<p class="muted" style="margin:0">Ajuste nominal acumulado que pactó cada subgrupo en su acuerdo vigente, llevado a una tasa anual para poder comparar acuerdos de distinta duración.</p>
+<div class="ctl"><label>Franja<select id="kn"><option value="1">Nivel 1</option><option value="2">Nivel 2</option><option value="3">Nivel 3</option></select></label><label>Grupo<select id="kg"><option value="">Todos los grupos</option></select></label><label>Buscar subgrupo<input id="kq" placeholder="Ej.: supermercados, informática, construcción"></label></div>
+<h3 style="margin:4px 0 0;font:700 17px var(--display)">Promedio anual por grupo</h3><div class="bars" id="bars"></div>
+<div class="tw"><table><thead><tr><th class="s" data-k="grupo">Grupo</th><th class="s" data-k="n">Subgrupo</th><th>Vigencia</th><th class="n s" data-k="acum">Acumulado</th><th class="n s" data-k="anual">Anual</th><th>Correctivo</th><th></th></tr></thead><tbody id="ktab"></tbody></table></div>
+<p class="muted" id="kfoot" style="margin:0"></p></section>
+
+<section class="box" id="evolucion"><h2>Evolución frente a la inflación</h2>
+<div class="ctl"><label>Grupo<select id="eg"></select></label><label>Subgrupo<select id="es"></select></label><label>Franja<select id="en"><option value="1">Nivel 1</option><option value="2">Nivel 2</option><option value="3">Nivel 3</option></select></label></div>
+<div id="echart"></div><div class="legend"><span><i style="background:var(--accent)"></i>Salario mínimo del subgrupo (ajustes pactados)</span><span><i style="background:var(--accent2)"></i>Precios (Unidad Indexada)</span></div>
+<div class="res" id="eres"></div></section>
+
+<section class="box" id="actas"><h2>Actas y convenios por grupo</h2>
+<p class="muted" style="margin:0">Todo lo publicado en el Diario Oficial desde 2005 para cada subgrupo: actas de los Consejos de Salarios, convenios y decretos que los extienden.</p>
+<div class="ctl"><label>Grupo<select id="ag"></select></label></div><div id="alist"></div></section>
+
+<section class="box"><h2>Cómo funciona</h2>
+<p style="margin:0">Los Consejos de Salarios son tripartitos (Poder Ejecutivo, trabajadores y empleadores) y fijan por grupo de actividad los salarios mínimos por categoría y los aumentos. Lo que acuerdan se publica en el Diario Oficial y, cuando el Poder Ejecutivo lo extiende por decreto, es obligatorio para todo el sector. En la ronda actual los aumentos suelen ser semestrales y distintos por franja salarial, con un <b>correctivo</b> si la inflación supera lo pactado.</p></section>
+
+<section class="cta"><strong>Avisame antes de cada ajuste de mi rubro</strong>
+<span class="muted">Un correo cuando se publica un acta nueva o se acerca un aumento en tu grupo. Gratis.</span>
+<a class="btn" href="https://pulsodelsur.beehiiv.com/subscribe">Quiero recibirlo</a></section>
+<footer>Fuente: índice de convenios colectivos de IMPO y actas de los Consejos de Salarios publicadas en el Diario Oficial (<span id="nleidas"></span> actas leídas automáticamente<span id="npend"></span>). Inflación: Unidad Indexada del BCU. Los porcentajes se extraen del texto de cada acta y pueden tener errores; confirmá siempre en el acta enlazada. Pulso del Sur no tiene relación con el MTSS ni con IMPO.</footer>
+</div>
+<script>
+const D={{DATA}};
+const $=id=>document.getElementById(id),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=s=>s?s.slice(8,10)+"/"+s.slice(5,7)+"/"+s.slice(0,4):"";
+const pct=x=>x==null?"—":(x*100).toLocaleString("es-UY",{minimumFractionDigits:1,maximumFractionDigits:1})+"%";
+const p1=v=>v==null?"—":v.toLocaleString("es-UY",{maximumFractionDigits:2})+"%";
+const money=x=>"$ "+Math.round(x).toLocaleString("es-UY");
+const HOY=new Date().toISOString().slice(0,10);
+const val=(v,n)=>v.ipc?null:(v[n]??v.g??null);
+const U=D.u.map((u,i)=>({...u,i}));
+const grupos=[...new Map(U.map(u=>[u.g,u.grupo])).entries()];
+// KPIs
+const ui=D.ui;const uiAt=d=>{let r=null;for(const [f,v] of ui){if(f<=d)r=v;else break}return r};
+const last=ui.length?ui[ui.length-1]:null,yago=last?uiAt(new Date(new Date(last[0]).getTime()-365*864e5).toISOString().slice(0,10)):null;
+const vig=U.filter(u=>u.vig&&u.vig.hasta>=HOY);
+const p60=D.prox.filter(x=>x.f<=new Date(Date.now()+60*864e5).toISOString().slice(0,10));
+$("kpis").innerHTML=[[U.length,"subgrupos y capítulos"],[vig.length,"con acuerdo vigente leído"],[p60.length,"ajustes en los próximos 60 días"],[last&&yago?pct(last[1]/yago-1):"—","inflación de 12 meses (UI)"]]
+ .map(([n,t])=>`<div class="kpi"><b>${typeof n=="number"?n.toLocaleString("es-UY"):n}</b><span>${t}</span></div>`).join("");
+$("nleidas").textContent=D.leidas;$("npend").textContent=D.pend?`; faltan ${D.pend}, se completan en los próximos días`:"";
+// próximos
+$("ptab").innerHTML=D.prox.map(x=>{const u=U.find(y=>y.n.toUpperCase()===x.n.toUpperCase()&&y.g===x.g);const c=n=>x.v.ipc?(n==="1"?"IPC proyectado":""):p1(x.v[n]??x.v.g);
+ return `<tr><td>${fmt(x.f)}</td><td>${esc(u?u.grupo:"")}</td><td>${esc(u?u.n:x.n)}</td><td class="n">${c("1")}</td><td class="n">${x.v.ipc||x.v.g!=null?"":c("2")}</td><td class="n">${x.v.ipc||x.v.g!=null?"":c("3")}</td><td>${x.u?`<a href="${esc(x.u)}" target="_blank" rel="noopener">Acta</a>`:""}</td></tr>`}).join("")||'<tr><td colspan="7" class="muted">Sin ajustes próximos en las actas leídas.</td></tr>';
+// selects grupo/subgrupo
+function fillG(id,all){$(id).innerHTML=(all?'<option value="">Todos los grupos</option>':"")+grupos.map(([g,n])=>`<option value="${g}">${esc(n)}</option>`).join("")}
+function fillS(gid,sid,soloAj){const g=$(gid).value;$(sid).innerHTML=U.filter(u=>u.g===g&&(!soloAj||u.aj.length)).map(u=>`<option value="${u.i}">${esc(u.n)}</option>`).join("")||'<option value="">Sin ajustes leídos</option>'}
+fillG("cg");fillG("eg");fillG("ag");grupos.forEach(([g,n])=>$("kg").insertAdjacentHTML("beforeend",`<option value="${g}">${esc(n)}</option>`));
+const firstWith=U.find(u=>u.aj.length);if(firstWith){$("cg").value=firstWith.g;$("eg").value=firstWith.g}
+fillS("cg","cs",1);fillS("eg","es",1);
+// calculadora
+function calc(){const u=U[+$("cs").value],n=$("cn").value,s=+$("cv").value||0;if(!u){$("cres").textContent="Elegí un subgrupo con ajustes leídos.";return}
+ const fut=u.aj.filter(([f])=>f>=HOY);let x=s,rows=[];for(const [f,v] of fut){const p=val(v,n);if(p==null){rows.push(`${fmt(f)}: según IPC proyectado`);continue}x*=1+p/100;rows.push(`${fmt(f)}: +${p1(p)} → ${money(x)}`)}
+ $("cres").innerHTML=fut.length?`Con los ajustes pactados, tu salario de ${money(s)} pasaría a <b>${money(x)}</b> (${pct(x/s-1)}).<br><span class="muted">${rows.join(" · ")}</span>`:"Este subgrupo no tiene ajustes futuros en el acta leída (puede estar negociando la próxima ronda).";}
+["cg"].forEach(i=>$(i).addEventListener("input",()=>{fillS("cg","cs",1);calc()}));["cs","cn","cv"].forEach(i=>$(i).addEventListener("input",calc));calc();
+// comparativa
+let sortK="anual",sortD=-1;
+function meses(a,b){if(!a||!b)return null;return (+b.slice(0,4)-+a.slice(0,4))*12+(+b.slice(5,7))-(+a.slice(5,7))+(+b.slice(8,10)>=28?1:0)}
+function comp(){const n=$("kn").value,g=$("kg").value,q=$("kq").value.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+ const rows=vig.map(u=>{const aj=u.aj.filter(([f])=>f>=u.vig.desde&&f<=u.vig.hasta);let a=1,ok=0;for(const [,v] of aj){const p=val(v,n);if(p!=null){a*=1+p/100;ok++}}
+  const m=meses(u.vig.desde,u.vig.hasta);return {...u,acum:ok?a-1:null,anual:ok&&m?Math.pow(a,12/m)-1:null,m}}).filter(r=>r.acum!=null);
+ const by={};rows.forEach(r=>{(by[r.grupo]=by[r.grupo]||[]).push(r.anual)});const avg=Object.entries(by).map(([k,v])=>[k,v.reduce((a,b)=>a+b,0)/v.length,v.length]).sort((a,b)=>b[1]-a[1]);
+ const mx=Math.max(...avg.map(x=>x[1]),0.0001);
+ $("bars").innerHTML=avg.map(([k,v,c])=>`<div class="bar"><span>${esc(k)} <span class="muted">(${c})</span></span><i style="width:${(v/mx*100).toFixed(1)}%"></i><span>${pct(v)}</span></div>`).join("");
+ const f=rows.filter(r=>(!g||r.g===g)&&(!q||(r.n+" "+r.grupo).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(q)));
+ f.sort((a,b)=>{const x=a[sortK],y=b[sortK];return (typeof x=="string"?x.localeCompare(y,"es"):(x??-9)-(y??-9))*sortD});
+ $("ktab").innerHTML=f.map(r=>`<tr><td>${esc(r.grupo)}</td><td>${esc(r.n)}</td><td>${fmt(r.vig.desde)} a ${fmt(r.vig.hasta)}${r.m?` <span class="muted">(${r.m} meses)</span>`:""}</td><td class="n">${pct(r.acum)}</td><td class="n">${pct(r.anual)}</td><td>${r.vig.correctivo?"sí":"—"}</td><td><a href="${esc(r.vig.u)}" target="_blank" rel="noopener">Acta</a></td></tr>`).join("");
+ $("kfoot").textContent=`${f.length} acuerdos vigentes con porcentajes leídos. Cuando un ajuste es "según IPC proyectado" no se suma.`}
+["kn","kg","kq"].forEach(i=>$(i).addEventListener("input",comp));
+document.querySelectorAll("th.s").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.k;sortD=sortK===k?-sortD:(k==="grupo"||k==="n"?1:-1);sortK=k;comp()}));comp();
+// evolución
+function evo(){const u=U[+$("es").value],n=$("en").value;if(!u||!u.aj.length){$("echart").innerHTML="";$("eres").textContent="Sin ajustes leídos para este subgrupo.";return}
+ const pts=[];let idx=100;const f0=u.aj[0][0];const ui0=uiAt(f0);
+ for(const [f,v] of u.aj){if(f>HOY)break;const p=val(v,n);if(p!=null)idx*=1+p/100;pts.push([f,idx])}
+ const end=HOY;const sal=[[f0,100]];let cur=100;for(const [f,v] of pts){sal.push([f,cur]);cur=v;sal.push([f,v])}sal.push([end,cur]);
+ const pr=ui.filter(([f])=>f>=f0).map(([f,v])=>[f,ui0?v/ui0*100:null]).filter(x=>x[1]);if(!pr.length||!ui0){$("echart").innerHTML="";$("eres").textContent="Sin datos de inflación para el período.";return}
+ const W=900,H=260,P=34,t0=new Date(f0).getTime(),t1=new Date(end).getTime(),ys=[...sal.map(x=>x[1]),...pr.map(x=>x[1])],y0=Math.min(...ys)-1,y1=Math.max(...ys)+1;
+ const X=d=>P+(new Date(d).getTime()-t0)/(t1-t0||1)*(W-2*P),Y=v=>H-P-(v-y0)/(y1-y0)*(H-2*P);
+ const path=a=>a.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+","+Y(p[1]).toFixed(1)).join("");
+ const yt=[y0,(y0+y1)/2,y1].map(v=>`<text x="2" y="${Y(v)+4}">${v.toFixed(0)}</text><line x1="${P}" x2="${W-P}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--rule)"/>`).join("");
+ $("echart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Salario frente a precios">${yt}<path d="${path(pr)}" fill="none" stroke="var(--accent2)" stroke-width="2"/><path d="${path(sal)}" fill="none" stroke="var(--accent)" stroke-width="2.5"/><text x="${P}" y="${H-8}">${fmt(f0)}</text><text x="${W-P-60}" y="${H-8}">${fmt(end)}</text></svg>`;
+ const s=cur/100,p=pr[pr.length-1][1]/100;$("eres").innerHTML=`Desde el ${fmt(f0)}: ajustes nominales <b>${pct(s-1)}</b> · precios ${pct(p-1)} · poder de compra <span class="${s/p>=1?"good":"bad"}"><b>${pct(s/p-1)}</b></span>.<br><span class="muted">Base 100 = ${fmt(f0)}. Solo cuenta los ajustes de las actas leídas; no incluye correctivos aplicados después.</span>`}
+$("eg").addEventListener("input",()=>{fillS("eg","es",1);evo()});["es","en"].forEach(i=>$(i).addEventListener("input",evo));evo();
+// actas
+function actas(){const g=$("ag").value;$("alist").innerHTML=U.filter(u=>u.g===g).map(u=>`<details><summary>${esc(u.n)} <span class="muted">· ${u.docs.length} documentos · último ${esc(u.ult.length>4?fmt(u.ult):u.ult)}</span></summary>
+ <div class="links" style="margin-top:8px">${u.docs.map(d=>`<a href="${esc(d.u)}" target="_blank" rel="noopener">${d.tipo==="acta"?"Acta "+fmt(d.fecha):(d.tipo==="decreto"?"Decreto ":"Convenio ")+d.anio}</a>`).join("")}</div></details>`).join("")}
+$("ag").addEventListener("input",actas);actas();
+</script></body></html>
