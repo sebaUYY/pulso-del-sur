@@ -1,0 +1,104 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sucesiones en Uruguay: herencias yacentes, edictos y cómo hacer una sucesión</title>
+<meta name="description" content="Buscá si se abrió la sucesión de una persona, mirá las herencias yacentes (sin herederos conocidos) y los inmuebles en juicio de prescripción, y seguí el paso a paso de una sucesión con enlaces oficiales.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f5f3ef;--surface:#fff;--fg:#1b1b1f;--muted:#5f6068;--rule:#dedad2;--accent:#3d4f8a;--accent2:#8a3b12;--hl:#ecebf5;
+--display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#131316;--surface:#1c1c21;--fg:#eaeaee;--muted:#a3a3ad;--rule:#33333b;--accent:#a9b8ee;--accent2:#eba070;--hl:#262838;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding:28px max(16px,env(safe-area-inset-left,0px)) 64px max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:980px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:26px}.wrap>*{min-width:0}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(32px,5.6vw,52px)/.96 var(--display);font-stretch:78%;margin:8px 0}
+h2{font:700 24px/1.1 var(--display);font-stretch:85%;margin:0 0 6px}
+.lede{color:var(--muted);max-width:70ch;margin:0}.muted{color:var(--muted);font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px;text-decoration:none;color:inherit}.kpi b{display:block;font:700 28px/1 var(--display)}.kpi span{font-size:13px;color:var(--muted)}
+.box{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:10px}
+.row{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13.5px;align-items:center}
+input,select{font:inherit;padding:10px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--fg);width:100%}
+.f2{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+button{font:600 15px var(--body);padding:10px 16px;border-radius:6px;border:0;background:var(--accent);color:var(--surface);cursor:pointer}
+.list{display:grid;gap:8px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px 14px;display:grid;gap:4px}
+.card h3{margin:0;font:700 17px/1.25 var(--display);font-stretch:90%}
+.tag{font:500 11.5px var(--mono);padding:2px 7px;border-radius:4px;border:1px solid currentColor;white-space:nowrap;color:var(--accent)}
+.tag.w{color:var(--accent2)}
+.note{background:var(--hl);border-radius:8px;padding:12px 14px;font-size:14.5px}
+ol.steps{margin:0;padding-left:22px;display:grid;gap:10px}ol.steps li{padding-left:4px}ol.steps b{font-family:var(--display);font-size:16.5px}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;min-width:620px}th,td{text-align:left;padding:8px;border-bottom:1px solid var(--rule);vertical-align:top}th{font:600 12px var(--mono);color:var(--muted);text-transform:uppercase}
+a{color:var(--accent)}.links{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:14px}
+.cta{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px;display:grid;gap:8px}
+.btn{justify-self:start;background:var(--accent);color:var(--surface);padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}
+footer{font-size:13px;color:var(--muted)}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">Diario Oficial · actualizado {{FECHA}}</div><h1>Sucesiones UY</h1>
+<p class="lede">Buscá si se abrió la sucesión de alguien, mirá las herencias sin herederos conocidos y los inmuebles en juicio de prescripción, y seguí el paso a paso para hacer una sucesión.</p>
+<p class="links" style="margin-top:8px"><a href="../">← Pulso del Sur</a><a href="#buscar">Buscar un edicto</a><a href="#yacentes">Herencias yacentes</a><a href="#inmuebles">Inmuebles</a><a href="#guia">Cómo hacer una sucesión</a><a href="../remates/?origen=sucesion">Remates de sucesiones</a></p></header>
+<section class="kpis" id="kpis"></section>
+
+<section class="box" id="buscar"><h2>¿Se abrió la sucesión de…?</h2>
+<p class="muted" style="margin:0">Escribí nombre y apellido (al menos dos palabras, por ejemplo «Juan Pérez»). Por privacidad no publicamos la lista de nombres: te mostramos el juzgado, el expediente y la página del Diario Oficial donde salió el edicto, para que lo confirmes ahí.</p>
+<form class="f2" id="fq"><input id="q" placeholder="Nombre y apellido de la persona fallecida" aria-label="Nombre y apellido" autocomplete="off"><button>Buscar</button></form>
+<div class="list" id="res"></div></section>
+
+<section id="yacentes" class="box"><h2>Herencias yacentes</h2>
+<p class="note" style="margin:0">Una herencia es <b>yacente</b> cuando no hay herederos conocidos o renunciaron (Código Civil, art. 1072). El juzgado nombra un curador y publica un edicto citando a herederos, acreedores e interesados por 90 días. Si nadie con derecho se presenta, hereda el Estado (art. 1034). Si sos pariente o acreedor, presentate en el juzgado con un abogado dentro del plazo.</p>
+<div class="row"><select id="ydep" aria-label="Departamento" style="max-width:260px"><option value="">Todos los departamentos</option></select><span class="muted" id="ycount"></span></div>
+<div class="list" id="ylist"></div></section>
+
+<section id="inmuebles" class="box"><h2>Inmuebles en juicio de prescripción</h2>
+<p class="note" style="margin:0">Son inmuebles sobre los que alguien pide que lo declaren dueño por haberlos poseído durante años (prescripción adquisitiva). El juzgado cita por edicto a los últimos titulares, a sus herederos y a cualquier interesado, que pueden presentarse dentro del plazo.</p>
+<div class="row"><select id="pdep" aria-label="Departamento" style="max-width:260px"><option value="">Todos los departamentos</option></select><span class="muted" id="pcount"></span></div>
+<div class="tw"><table><thead><tr><th>Departamento</th><th>Localidad (según el aviso)</th><th>Padrón</th><th>Sede</th><th>Expediente</th><th></th></tr></thead><tbody id="ptab"></tbody></table></div></section>
+
+<section id="guia" class="box"><h2>Cómo hacer una sucesión en Uruguay</h2>
+<ol class="steps">
+<li><b>Partida de defunción.</b> Es el primer documento que te van a pedir. <a href="https://www.gub.uy/tramites/solicitud-partidas-defuncion" target="_blank" rel="noopener">Pedirla en línea</a>.</li>
+<li><b>Abrir la sucesión en el juzgado.</b> Con abogado, se presenta ante el Juzgado Letrado (de Familia en Montevideo; de Primera Instancia en el interior). El juzgado publica un edicto en el Diario Oficial que cita a herederos y acreedores por <b>30 días</b> (son los que aparecen en el buscador de arriba).</li>
+<li><b>Declaratoria de herederos.</b> El juez declara quiénes heredan. Sin testamento, el orden lo fija el Código Civil: primero los hijos y descendientes, con la porción del cónyuge (<a href="https://www.impo.com.uy/bases/codigo-civil/16603-1994/1025" target="_blank" rel="noopener">art. 1025 y siguientes</a>).</li>
+<li><b>Impuestos.</b> La sucesión que mantiene bienes se inscribe en DGI (<a href="https://www.gub.uy/tramites/inscripcion-sucesion-indivisa-sin-actividad-empresarial" target="_blank" rel="noopener">sucesión indivisa</a>; si corresponde, <a href="https://www.gub.uy/tramites/inscripcion-sucesion-impuesto-patrimonio" target="_blank" rel="noopener">Impuesto al Patrimonio</a>). Cuando hay inmuebles, la transmisión por herencia genera el ITP (<a href="https://www.impo.com.uy/bases/consultas-tributarias/6715-2025" target="_blank" rel="noopener">criterio de DGI</a>); tu escribano lo liquida.</li>
+<li><b>Si la persona tenía una empresa.</b> En BPS: <a href="https://www.gub.uy/tramites/inscripcion-sucesion-contribuyente-unipersonal" target="_blank" rel="noopener">sucesión de contribuyente unipersonal</a> o <a href="https://www.gub.uy/tramites/inscribir-sucesion-empresa-rural" target="_blank" rel="noopener">de empresa rural</a>.</li>
+<li><b>Inscribir los bienes a nombre de los herederos.</b> El escribano inscribe la sucesión en el Registro de la Propiedad. Para viviendas de la ANV: <a href="https://www.gub.uy/tramites/cambio-titular-inmueble-anv-sucesion" target="_blank" rel="noopener">cambio de titular por sucesión</a>. Algunas intendencias tienen su propio trámite para cambiar el titular de tributos (por ejemplo <a href="https://www.gub.uy/tramites/regularizacion-fallecimiento-titular-sucesion-terminada-canelones" target="_blank" rel="noopener">Canelones</a>).</li>
+<li><b>Si no aparecen herederos.</b> La herencia se declara yacente y el juzgado nombra un curador; si nadie se presenta, hereda el Estado (<a href="https://www.impo.com.uy/bases/codigo-civil/16603-1994/1072" target="_blank" rel="noopener">art. 1072</a> y <a href="https://www.impo.com.uy/bases/codigo-civil/16603-1994/1034" target="_blank" rel="noopener">art. 1034</a>).</li>
+</ol>
+<p class="muted" style="margin:0">Guía orientativa, no es asesoramiento legal: cada sucesión tiene sus particularidades. Consultá con un abogado o escribano.</p></section>
+
+<section class="cta"><strong>Avisame de remates y herencias yacentes nuevas</strong>
+<span class="muted">Un correo por semana con las herencias yacentes, los inmuebles en prescripción y los remates de sucesiones de tu departamento. Gratis.</span>
+<a class="btn" href="https://pulsodelsur.beehiiv.com/subscribe">Quiero recibirlo</a></section>
+<footer>Fuente: avisos del Diario Oficial (IMPO), procesados de lunes a viernes. Base desde <span id="desde"></span>. Los datos se extraen automáticamente del PDF y pueden tener errores: confirmá siempre en la página del Diario Oficial enlazada. No publicamos nombres de herederos ni de otras personas vivas. Pulso del Sur no tiene relación con IMPO ni con el Poder Judicial.</footer>
+</div>
+<script>
+const D={{DATA}};
+const $=id=>document.getElementById(id),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=s=>s?s.slice(8,10)+"/"+s.slice(5,7)+"/"+s.slice(0,4):"";
+const K=D.kpi;
+$("kpis").innerHTML=[[K.suc30,"edictos de sucesión en 30 días","#buscar"],[D.yacentes.length,"herencias yacentes","#yacentes"],[K.pre,"inmuebles en prescripción","#inmuebles"],[K.total,"edictos de sucesión en la base","#buscar"]]
+ .map(([n,t,h])=>`<a class="kpi" href="${h}"><b>${Number(n).toLocaleString("es-UY")}</b><span>${t}</span></a>`).join("");
+$("desde").textContent=fmt(K.desde);
+let IDX=null;
+const STOP=new Set(["DE","DEL","LA","LOS","LAS","Y","O","U","OTRO","OTROS","OTRA","SUCESION"]);
+const toks=s=>[...new Set((s.normalize("NFKD").replace(/[̀-ͯ]/g,"").toUpperCase().match(/[A-Z]{2,}/g)||[]).filter(w=>!STOP.has(w)))].sort();
+async function hsh(a,b){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(`pds|${a}|${b}`));return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,"0")).join("").slice(0,10)}
+$("fq").addEventListener("submit",async e=>{e.preventDefault();const t=toks($("q").value);
+ if(t.length<2){$("res").innerHTML='<p class="muted">Escribí al menos un nombre y un apellido.</p>';return}
+ const hs=[];for(let i=0;i<t.length;i++)for(let j=i+1;j<t.length;j++)hs.push(await hsh(t[i],t[j]));
+ if(!IDX){$("res").innerHTML='<p class="muted">Buscando…</p>';try{IDX=await (await fetch("indice.json")).json()}catch(_){$("res").innerHTML='<p class="muted">No se pudo cargar el índice. Probá de nuevo.</p>';return}}
+ const r=IDX.filter(x=>hs.every(h=>x.h.includes(h)));
+ $("res").innerHTML=r.length?r.map(x=>`<article class="card"><div class="row"><span class="tag">edicto de sucesión</span><b>${esc(x.d)}</b><span>${esc(x.s)}</span></div>
+ <div class="row muted">${x.i?`<span>Expediente IUE ${esc(x.i)}</span>`:""}${x.f?`<span>auto del ${fmt(x.f)}</span>`:""}<span>en el Diario Oficial del ${fmt(x.v)}</span></div>
+ <div class="row"><a href="${esc(x.p)}" target="_blank" rel="noopener">Ver el edicto en el Diario Oficial</a></div></article>`).join("")
+ :`<p class="muted">No encontramos un edicto con ese nombre desde el ${fmt(K.desde)}. Probá con el segundo apellido o sin segundo nombre; puede haberse publicado antes de esa fecha.</p>`});
+const deps=a=>[...new Set(a.map(x=>x.dep).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"es"));
+deps(D.yacentes).forEach(d=>$("ydep").insertAdjacentHTML("beforeend",`<option>${esc(d)}</option>`));
+deps(D.prescripciones).forEach(d=>$("pdep").insertAdjacentHTML("beforeend",`<option>${esc(d)}</option>`));
+function y(){const d=$("ydep").value,r=D.yacentes.filter(x=>!d||x.dep===d);$("ycount").textContent=r.length+" herencias";
+ $("ylist").innerHTML=r.map(x=>`<article class="card"><div class="row"><span class="tag w">herencia yacente</span><b>${esc(x.dep)}</b><span>${esc(x.sede)}</span></div><h3>${esc(x.causante)}</h3>
+ <div class="row muted">${x.iue?`<span>Expediente IUE ${esc(x.iue)}</span>`:""}${x.fecha?`<span>auto del ${fmt(x.fecha)}</span>`:""}<span>en el Diario Oficial del ${fmt(x.visto)}</span><span>plazo: 90 días</span></div>
+ <div class="row"><a href="${esc(x.pdf)}" target="_blank" rel="noopener">Ver el edicto en el Diario Oficial</a></div></article>`).join("")||'<p class="muted">No hay herencias yacentes con ese filtro.</p>'}
+function p(){const d=$("pdep").value,r=D.prescripciones.filter(x=>!d||x.dep===d);$("pcount").textContent=r.length+" inmuebles";
+ $("ptab").innerHTML=r.map(x=>`<tr><td>${esc(x.dep)}</td><td>${esc(x.localidad)}${x.zona?` <span class="muted">(${esc(x.zona)})</span>`:""}</td><td>${esc((x.padrones||[]).join(", "))}</td><td>${esc(x.sede)}</td><td>${esc(x.iue)}</td><td><a href="${esc(x.pdf)}" target="_blank" rel="noopener">Edicto</a></td></tr>`).join("")}
+$("ydep").addEventListener("input",y);$("pdep").addEventListener("input",p);y();p();
+</script></body></html>
