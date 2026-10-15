@@ -161,6 +161,31 @@ calc = {"fx": {P[k]["moneda"]: [P[k]["fx"][-1][1], P[k]["fx"][-1][0], P[k]["nomb
 calc["fx"]["USD"] = [1, "", "Estados Unidos"]
 CALC = json.dumps(calc, separators=(",", ":"))
 
+# ---------- vista previa del plan Pro: muestra real de dos hojas del Excel
+pm = sorted({m for p in P.values() for m in p["mensual"]})[-3:]
+pv_head = "".join(f'<th class="num" colspan="2">{MES[int(m[5:]) - 1]} {m[:4]}</th>' for m in pm)
+pv_sub = '<th class="num">Cierre</th><th class="num">Prom.</th>' * len(pm)
+pv_rows = "".join(
+    f'<tr><th scope="row">{P[k]["nombre"]}</th>' + "".join(
+        (f'<td class="num">{es(P[k]["mensual"][m]["cierre"], 2)}</td><td class="num">{es(P[k]["mensual"][m]["promedio"], 2)}</td>'
+         if m in P[k]["mensual"] else '<td></td><td></td>') for m in pm) + '</tr>'
+    for k in ["UY", "AR", "BR"] if k in P)
+PV1 = f'<table class="compact"><thead><tr><th>País</th>{pv_head}</tr><tr><th></th>{pv_sub}</tr></thead><tbody>{pv_rows}</tbody></table>'
+bud = []
+for k in ["UY", "AR", "BR"]:
+    if k not in P:
+        continue
+    p = P[k]
+    p3 = sum(p["mensual"][m]["promedio"] for m in pm if m in p["mensual"]) / max(1, sum(m in p["mensual"] for m in pm))
+    focus = next((e for e in p.get("expectativas", []) if e["indicador"].startswith("Dólar") and e["anio"] == str(GEN.year + 1)), None)
+    sup = focus["mediana"] if focus else p3
+    bud.append(f'<tr><th scope="row">{p["nombre"]}</th><td class="num">{es(p["fx"][-1][1], 2)}</td><td class="num">{es(p3, 2)}</td>'
+               f'<td class="num">{es(focus["mediana"], 2) if focus else "–"}</td><td class="num big">{es(sup, 2)}</td>'
+               f'<td class="num">{es(sup * 0.9, 2)}</td><td class="num">{es(sup * 1.1, 2)}</td></tr>')
+PV2 = ('<table class="compact"><thead><tr><th>País</th><th class="num">Último</th><th class="num">Prom. 3 meses</th>'
+       '<th class="num">Mercado</th><th class="num">Supuesto</th><th class="num">−10%</th><th class="num">+10%</th></tr></thead>'
+       f'<tbody>{"".join(bud)}</tbody></table>')
+
 src = "".join(f'<li><b>{P[k]["nombre"]}</b>: {html.escape(P[k]["fx_fuente"])}. Inflación: {html.escape(P[k]["infl_fuente"])}.</li>' for k in ORDER if k in P)
 if "BR" in P:
     src += f'<li><b>Expectativas</b>: {html.escape(P["BR"]["exp_fuente"])}.</li>'
@@ -169,7 +194,7 @@ page = open("template.html").read()
 for a, b in {"{{ROWS}}": "\n".join(rows), "{{OK}}": str(ok), "{{TOTAL}}": str(len(ORDER)),
              "{{FECHA}}": f"{GEN.day} {MES[GEN.month - 1]} {GEN.year}, {GEN:%H:%M}", "{{SOURCES}}": src,
              "{{RESUMEN}}": RESUMEN, "{{CIERRE}}": CIERRE, "{{MESCIERRE}}": ym(lastm), "{{EXP}}": EXP,
-             "{{TCR}}": TCR, "{{TCRTXT}}": TCR_TXT, "{{CALC}}": CALC, "{{ANIO}}": str(GEN.year + 1)}.items():
+             "{{TCR}}": TCR, "{{TCRTXT}}": TCR_TXT, "{{CALC}}": CALC, "{{ANIO}}": str(GEN.year + 1), "{{PV1}}": PV1, "{{PV2}}": PV2}.items():
     page = page.replace(a, b)
 
 open("artifact.html", "w").write(page)
