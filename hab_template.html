@@ -1,0 +1,96 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESC}}">
+<link rel="canonical" href="{{CANON}}">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f4f5f0;--surface:#fff;--fg:#1a1c20;--muted:#5d636b;--rule:#dcdfd6;--accent:#1d5c4a;--accent2:#8a3b12;--warn:#7a5a00;--hl:#e6f0ea;
+--display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#121412;--surface:#1b1e1b;--fg:#e9ece6;--muted:#a1a79e;--rule:#30352f;--accent:#7fd1b0;--accent2:#eba070;--warn:#e3c160;--hl:#1f2e27;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding:28px max(16px,env(safe-area-inset-left,0px)) 64px max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:22px}.wrap>*{min-width:0}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(30px,5.4vw,50px)/.98 var(--display);font-stretch:78%;margin:8px 0}
+h2{font:700 21px/1.15 var(--display);font-stretch:85%;margin:10px 0 2px}
+.lede{color:var(--muted);max-width:68ch;margin:0}.muted{color:var(--muted);font-size:14px}
+.form{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+label{display:grid;gap:4px;font-size:13px;color:var(--muted);font-weight:600}
+select{font:inherit;padding:10px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--fg);width:100%}
+.checks{display:flex;flex-wrap:wrap;gap:8px 20px}.checks label{display:flex;gap:8px;align-items:center;font-weight:400;color:var(--fg);font-size:15px}
+.bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;font-size:14px}
+.prog{flex:1 1 180px;height:8px;background:var(--rule);border-radius:4px;overflow:hidden}.prog i{display:block;height:100%;background:var(--accent);width:0}
+button{font:600 14px var(--body);padding:8px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--surface);color:var(--fg);cursor:pointer}
+.sec{display:grid;gap:10px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px 16px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px}
+.card.done{opacity:.55}.card input{width:20px;height:20px;margin-top:3px;accent-color:var(--accent)}
+.card h3{margin:0;font:700 17px/1.25 var(--display);font-stretch:90%}
+.card p{margin:2px 0 0;font-size:14.5px}.card .nota{background:var(--hl);border-radius:6px;padding:6px 10px;font-size:14px}
+.row{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted);align-items:center}
+.tag{font:500 11.5px var(--mono);padding:2px 7px;border-radius:4px;border:1px solid currentColor;white-space:nowrap}
+.tag.o{color:var(--accent2)}.tag.s{color:var(--warn)}.tag.a{color:var(--accent)}
+.links{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px}
+a{color:var(--accent)}.cta{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px;display:grid;gap:8px}
+.btn{justify-self:start;background:var(--accent);color:var(--surface);padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}
+footer{font-size:13px;color:var(--muted)}.rub{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+@media print{.form,.cta,.noprint,.rub{display:none}body{background:#fff;padding:0}.card{break-inside:avoid}}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">Guía gratuita · actualizada {{FECHA}}</div><h1>{{TITLE}}</h1>
+<p class="lede">Elegí tu rubro y tu departamento y armá tu lista de trámites: inscripción en DGI y BPS, Bomberos, bromatología, intendencia y permisos del rubro. Cada paso enlaza a la ficha oficial, con costo y si se hace en línea.</p>
+<p class="links noprint" style="margin-top:8px"><a href="{{ROOT}}">← Pulso del Sur</a><a href="{{ROOT}}importar/">¿Importás? Calculá el costo</a><a href="{{ROOT}}licitaciones/">Vendele al Estado</a></p></header>
+<section class="form" aria-label="Tu negocio">
+<div class="grid">
+<label>¿Qué negocio vas a abrir?<select id="r"></select></label>
+<label>¿En qué departamento?<select id="d"></select></label>
+<label>¿Cómo te vas a inscribir?<select id="f"><option value="nose">Todavía no sé</option></select></label>
+</div>
+<div class="checks"><label><input type="checkbox" id="l"> Voy a tener un local</label><label><input type="checkbox" id="e"> Voy a tener empleados</label></div>
+</section>
+<div class="bar noprint"><span id="cnt"></span><span class="prog"><i id="pg"></i></span><button id="print">Imprimir o guardar PDF</button><button id="share">Copiar enlace</button></div>
+<main id="out"><ol>{{STATIC}}</ol></main>
+<section class="cta"><strong>¿Te sirvió? Recibí novedades para emprender</strong>
+<span class="muted">Cambios en trámites, fondos y convocatorias para pymes, y datos útiles para tu negocio. Un correo por semana, gratis.</span>
+<a class="btn" href="https://pulsodelsur.beehiiv.com/subscribe">Suscribirme</a></section>
+<section class="noprint"><h2>Guías por rubro</h2><div class="rub" id="rubs"></div></section>
+<footer>Fuente: Catálogo de trámites y servicios del Estado (AGESIC, datos abiertos; {{N}} trámites, se revisa cada semana), más páginas oficiales de Bomberos, BPS, BSE, INAU e intendencias para lo que no está en el catálogo. Es una guía orientativa: los requisitos pueden cambiar y algunos dependen de tu caso; confirmá en cada ficha oficial antes de invertir. Pulso del Sur no tiene relación con los organismos citados.</footer>
+</div>
+<script>
+const D={{DATA}},PRE="{{PRE}}";
+const $=id=>document.getElementById(id),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const R=Object.fromEntries(D.rubros.map(r=>[r.s,r]));
+D.rubros.forEach(r=>$("r").insertAdjacentHTML("beforeend",`<option value="${r.s}">${esc(r.n)}</option>`));
+Object.keys(D.deps).forEach(d=>$("d").insertAdjacentHTML("beforeend",`<option>${esc(d)}</option>`));
+Object.entries(D.formas).forEach(([k,v])=>$("f").insertAdjacentHTML("beforeend",`<option value="${k}">${esc(v)}</option>`));
+$("rubs").innerHTML=D.rubros.map(r=>`<a href="${PRE?"../":""}${r.s}/">${esc(r.n)}</a>`).join("");
+const qs=new URLSearchParams(location.search);
+$("r").value=qs.get("r")||PRE||"almacen";$("d").value=qs.get("d")||"Montevideo";$("f").value=qs.get("f")||"nose";
+$("e").checked=qs.get("e")==="1";
+let hecho={};try{hecho=JSON.parse(localStorage.getItem("hab-hecho")||"{}")}catch(_){}
+function setLocal(){$("l").checked=qs.has("l")?qs.get("l")==="1":R[$("r").value].l}
+setLocal();
+const badge=n=>`<span class="tag ${n==="Obligatorio"?"o":n==="Alimentos"?"a":"s"}">${esc(n)}</span>`;
+function card(x,k){const links=x.links||[["Ver ficha oficial",x.u]];const meta=[x.c,x.can,x.act?"ficha actualizada "+x.act:""].filter(Boolean).map(esc).join(" · ");
+ return `<article class="card${hecho[k]?" done":""}"><input type="checkbox" data-k="${esc(k)}" ${hecho[k]?"checked":""} aria-label="Marcar como hecho"><div>
+ <div class="row">${badge(x.n)}<span>${esc(x.org)}</span></div><h3>${esc(x.t)}</h3>${x.q?`<p>${esc(x.q)}</p>`:""}${x.nota?`<p class="nota">${esc(x.nota)}</p>`:""}
+ ${meta?`<div class="row" style="margin-top:4px">${meta}</div>`:""}<div class="links" style="margin-top:6px">${links.map(([t,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`).join("")}</div></div></article>`}
+function draw(){const r=R[$("r").value],d=$("d").value,f=$("f").value,l=$("l").checked,e=$("e").checked,P=D.pasos,dep=D.deps[d];
+ const S=[];
+ S.push(["1. Inscribí tu empresa en DGI y BPS",f==="nose"?["monotributo","unipersonal","sas"].map(k=>[k,{...P[k],n:"Elegí una",nota:k==="monotributo"?"Para negocios chicos, con tope de ingresos y actividades permitidas: pagás un solo aporte por DGI y BPS.":k==="unipersonal"?"Para trabajar solo o con empleados sin límite de facturación. Respondés con tu patrimonio.":"Sociedad de uno o más socios, se constituye en línea y separa tu patrimonio del de la empresa (Ley 19.820)."}]):[[f,P[f]]]]);
+ if(r.p.length)S.push(["2. Permisos de tu rubro",r.p.map(k=>[k,P[k]])]);
+ if(l)S.push(["Local: Bomberos",[["bomberos",P.bomberos]]]);
+ if(r.a)S.push(["Alimentos: bromatología (RUNAEV)",[["runaev_emp",P.runaev_emp]].concat(l?[["runaev_local",P.runaev_local]]:[]).concat([["bromato_dir",P.bromato_dir]])]);
+ const di=dep.items.filter(x=>r.a||x.n!=="Alimentos").filter(x=>l||r.a||x.n!=="Obligatorio");
+ S.push([`Intendencia de ${d}`,di.map((x,i)=>["dep-"+d+"-"+i,x])]);
+ S.push(["Personal",(e?[["bps_dep",P.bps_dep],["bse",P.bse]]:[]).concat([["carne_salud",{...P.carne_salud,n:e?"Obligatorio":"Según tu caso"}]])]);
+ let n=0,h=0;
+ $("out").innerHTML=S.map(([t,arr],i)=>{arr=arr.filter(a=>a[1]);n+=arr.length;h+=arr.filter(a=>hecho[a[0]]).length;
+  const extra=t.startsWith("Intendencia")?`<p class="muted">${arr.length?"Trámites de la intendencia que figuran en el catálogo oficial. ":"La intendencia no publica sus trámites de habilitación en el catálogo nacional. "}${dep.sitio?`Revisá también <a href="${esc(dep.sitio)}" target="_blank" rel="noopener">el sitio de la intendencia</a>.`:"Consultá en la oficina de habilitaciones de la intendencia."} Muchas intendencias piden RUT, certificado de BPS, autorización de Bomberos y planos del local.</p>`:"";
+  return `<section class="sec"><h2>${esc(t.replace(/^\d\. /,""))}</h2>${extra}${arr.map(([k,x])=>card(x,k)).join("")}</section>`}).join("");
+ $("cnt").textContent=`${h} de ${n} pasos marcados como hechos`;$("pg").style.width=(n?100*h/n:0)+"%";
+ const u=new URLSearchParams({r:r.s,d,f,l:l?1:0,e:e?1:0});history.replaceState(null,"","?"+u)}
+["d","f","l","e"].forEach(i=>$(i).addEventListener("change",draw));$("r").addEventListener("change",()=>{qs.delete("l");setLocal();draw()});
+$("out").addEventListener("change",ev=>{const k=ev.target.dataset.k;if(!k)return;hecho[k]=ev.target.checked;try{localStorage.setItem("hab-hecho",JSON.stringify(hecho))}catch(_){}draw()});
+$("print").onclick=()=>print();$("share").onclick=async()=>{try{await navigator.clipboard.writeText(location.href);$("share").textContent="Enlace copiado"}catch(_){$("share").textContent=location.href}};
+draw();
+</script></body></html>
