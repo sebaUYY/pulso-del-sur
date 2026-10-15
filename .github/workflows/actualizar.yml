@@ -20,7 +20,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,6 +37,13 @@ jobs:
       - name: Radar de compras públicas
         continue-on-error: true
         run: python licitaciones.py
+      - name: Empleos públicos (Uruguay Concursa)
+        continue-on-error: true
+        run: python concursa.py
+      - name: Canasta UY (solo descarga si Defensa del Consumidor publicó un archivo nuevo)
+        continue-on-error: true
+        timeout-minutes: 40
+        run: python canasta_site.py
       - name: Páginas fijas
         run: cp -r static/. site/
       - name: Guardar cache del radar
@@ -44,8 +51,8 @@ jobs:
         run: |
           git config user.name "pulso-bot"
           git config user.email "pulso-bot@users.noreply.github.com"
-          git add licitaciones/cache.json
-          git diff --cached --quiet || (git commit -m "Actualizar cache del radar" && git push)
+          git add licitaciones/cache.json canasta/resumen-*.json canasta/stamp.txt
+          git diff --cached --quiet || (git commit -m "Actualizar caches" && git push)
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
