@@ -44,6 +44,9 @@ jobs:
         continue-on-error: true
         timeout-minutes: 40
         run: python canasta_site.py
+      - name: Feriados, sismos y visas LatAm
+        continue-on-error: true
+        run: python latam.py
       - name: Páginas fijas
         run: cp -r static/. site/
       - name: Guardar cache del radar
