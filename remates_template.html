@@ -43,6 +43,7 @@ a{color:var(--accent)}footer{font-size:13px;color:var(--muted)}
 <select id="tipo" aria-label="Tipo de bien"><option value="">Todo tipo de bien</option></select>
 <select id="base" aria-label="Base"><option value="">Con y sin base</option><option value="sin">Sin base</option><option value="con">Con base</option></select>
 <select id="cuando" aria-label="Cuándo"><option value="">Todas las fechas</option><option value="7">Próximos 7 días</option><option value="30">Próximos 30 días</option></select>
+<select id="origen" aria-label="Origen"><option value="">Todo origen</option><option value="sucesion">De sucesiones</option></select>
 </section>
 <div class="muted" id="count"></div>
 <section class="list" id="list"></section>
@@ -61,14 +62,15 @@ const d0=new Date();d0.setHours(0,0,0,0);
 const dias=s=>Math.floor((new Date(s+"T12:00:00")-d0)/864e5);
 const fmt=s=>new Date(s+"T12:00:00").toLocaleDateString("es",{weekday:"long",day:"numeric",month:"long"});
 const money=b=>b?(b.moneda==="USD"?"US$ ":b.moneda==="UI"?"UI ":"$ ")+Math.round(b.monto).toLocaleString("es-UY"):"";
-function draw(){const q=nz($("q").value),dp=$("dep").value,tp=$("tipo").value,bs=$("base").value,cu=+$("cuando").value;
- const r=D.filter(x=>(!dp||x.depto===dp)&&(!tp||x.tipo===tp)&&(!bs||(bs==="sin")===x.sin_base)&&(!cu||dias(x.fecha)<=cu)
+function draw(){const q=nz($("q").value),dp=$("dep").value,tp=$("tipo").value,bs=$("base").value,cu=+$("cuando").value,og=$("origen").value;
+ const r=D.filter(x=>(!dp||x.depto===dp)&&(!tp||x.tipo===tp)&&(!bs||(bs==="sin")===x.sin_base)&&(!cu||dias(x.fecha)<=cu)&&(!og||x.sucesion)
   &&(!q||nz([x.bien,x.lugar,x.rematador,x.depto,x.padrones.join(" ")].join(" ")).includes(q)));
  $("count").textContent=r.length+" remates";
- $("list").innerHTML=r.map(x=>{const d=dias(x.fecha);return `<article class="card"><div class="row"><span class="tag t">${esc(x.tipo)}</span><span><b>${esc(x.depto)}</b></span><span>${fmt(x.fecha)}${x.hora?" · "+esc(x.hora)+" h":""}</span>${d<=2?`<span class="tag">${d===0?"hoy":d===1?"mañana":"en 2 días"}</span>`:""}${x.sin_base?'<span class="tag ok">sin base</span>':x.base?`<span class="tag">base ${money(x.base)}</span>`:""}</div>
+ $("list").innerHTML=r.map(x=>{const d=dias(x.fecha);return `<article class="card"><div class="row"><span class="tag t">${esc(x.tipo)}</span>${x.sucesion?'<span class="tag">sucesión</span>':""}<span><b>${esc(x.depto)}</b></span><span>${fmt(x.fecha)}${x.hora?" · "+esc(x.hora)+" h":""}</span>${d<=2?`<span class="tag">${d===0?"hoy":d===1?"mañana":"en 2 días"}</span>`:""}${x.sin_base?'<span class="tag ok">sin base</span>':x.base?`<span class="tag">base ${money(x.base)}</span>`:""}</div>
  <p class="bien cut">${esc(x.bien)}</p>
  <div class="row muted"><span>Lugar: ${esc(x.lugar)}</span>${x.rematador?`<span>Rematador: ${esc(x.rematador)}</span>`:""}${x.padrones.length?`<span>Padrón ${x.padrones.map(esc).join(", ")} (según el aviso)</span>`:""}${x.superficie?`<span>Superficie ${esc(x.superficie)}</span>`:""}${x.juzgado?`<span>${esc(x.juzgado)}</span>`:""}${x.moneda?`<span>Se remata en ${x.moneda==="USD"?"dólares":"pesos"}</span>`:""}</div>
  <div class="row"><a href="${esc(x.aviso)}" target="_blank" rel="noopener">Leer el aviso oficial</a><span class="muted">publicado el ${esc(x.publicado)}</span></div></article>`}).join("")||'<p class="muted">No hay remates con esos filtros.</p>'}
-["q","dep","tipo","base","cuando"].forEach(i=>$(i).addEventListener("input",draw));
+$("origen").value=new URLSearchParams(location.search).get("origen")||"";
+["q","dep","tipo","base","cuando","origen"].forEach(i=>$(i).addEventListener("input",draw));
 $("list").addEventListener("click",e=>{const p=e.target.closest(".bien");if(p)p.classList.toggle("cut")});draw();
 </script></body></html>
