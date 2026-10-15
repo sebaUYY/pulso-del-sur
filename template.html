@@ -105,6 +105,8 @@ input,select{font:15px var(--mono);padding:8px 10px;border:1px solid var(--rule)
 .cta:hover{filter:brightness(1.08)}
 .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:6px}
 .cta-row span{font-size:14px;color:var(--muted)}
+.tool ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14px}
+.cta.off{opacity:.55;cursor:default}
 </style>
 
 <div class="wrap">
@@ -114,7 +116,7 @@ input,select{font:15px var(--mono);padding:8px 10px;border:1px solid var(--rule)
   <p class="lede">Dólar, inflación y tipos de cambio de cierre de siete países, con fuente oficial y en un solo lugar. Para quien planifica, consolida o paga en varias monedas.</p>
   <div class="status"><span>Actualizado <b>{{FECHA}}</b> (hora de Uruguay)</span><span>Fuentes que respondieron: <b>{{OK}} de {{TOTAL}}</b></span></div>
   <div class="cta-row"><a class="cta" href="https://pulsodelsur.beehiiv.com/subscribe">Recibilo cada lunes</a><span>Newsletter gratis por mail. Te podés dar de baja cuando quieras.</span></div>
-  <nav class="toc" aria-label="Secciones"><a href="#hoy">Hoy</a><a href="#semana">La semana</a><a href="#cierre">Cierre del mes</a><a href="#presupuesto">Presupuesto {{ANIO}}</a><a href="#tcr">Uruguay vs vecinos</a><a href="#calculadoras">Calculadoras</a><a href="#datos">Descargas e integración</a></nav>
+  <nav class="toc" aria-label="Secciones"><a href="#hoy">Hoy</a><a href="#semana">La semana</a><a href="#pro">Plan Pro</a><a href="#cierre">Cierre del mes</a><a href="#presupuesto">Presupuesto {{ANIO}}</a><a href="#tcr">Uruguay vs vecinos</a><a href="#calculadoras">Calculadoras</a><a href="#datos">Descargas e integración</a></nav>
 </header>
 
 <section id="hoy">
@@ -138,6 +140,22 @@ input,select{font:15px var(--mono);padding:8px 10px;border:1px solid var(--rule)
 {{RESUMEN}}
   </article>
   <div class="cta-row" style="margin-top:14px"><a class="cta" href="https://pulsodelsur.beehiiv.com/subscribe">Recibilo cada lunes</a></div>
+</section>
+
+<section id="pro">
+  <h2>Pulso del Sur Pro</h2>
+  <p class="note">Para equipos de finanzas que consolidan o presupuestan en varias monedas. Todo en un Excel que se actualiza cada mes.</p>
+  <div class="tool" style="max-width:600px">
+    <div class="out">USD 5 <small>por mes · cancelás cuando quieras</small></div>
+    <ul>
+      <li>Cierre y promedio oficiales de 7 países desde enero 2024, listos para consolidar</li>
+      <li>Hoja de supuestos para el presupuesto con escenarios de ±10%</li>
+      <li>Consulta y conversión de montos al cierre y al promedio del mes</li>
+      <li>Serie diaria lista para Power BI</li>
+      <li>Tipo de cambio real de Uruguay frente a Argentina y Brasil</li>
+    </ul>
+    <span class="cta off" aria-disabled="true">Disponible muy pronto</span>
+  </div>
 </section>
 
 <section id="cierre">
