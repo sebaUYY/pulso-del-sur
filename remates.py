@@ -79,9 +79,11 @@ pedidos = 0
 for it in items:
     nc = norm(it["condiciones"])
     it["moneda"] = "USD" if "DOLAR" in nc else ("$" if "PESO" in nc or "MONEDA NACIONAL" in nc else "")
+    it["sucesion"] = bool(re.search(r"SUCESI|YACENTE", norm(it["bien"]) + " " + nc))
     prev = hist.get(it["id"])
-    if prev and "detalle" in prev:
-        it.update({k: prev[k] for k in ("detalle", "juzgado", "superficie") if k in prev})
+    if prev and "detalle" in prev and (prev.get("det_v") == 2 or pedidos >= 12):
+        it.update({k: prev[k] for k in ("detalle", "juzgado", "superficie", "det_v") if k in prev})
+        it["sucesion"] = it["sucesion"] or prev.get("sucesion", False)
         it["padrones"] = prev.get("padrones") or it["padrones"]
     elif it["aviso"] != URL and pedidos < 12:
         # aviso completo: padrones, superficie y juzgado (robots.txt de IMPO pide 10 s entre pedidos)
@@ -107,7 +109,8 @@ for it in items:
             it["superficie"] = sup.group(1).lower() if sup else ""
             jz = re.search(r"(JUZGADO LETRADO[^.]{0,90}?TURNO|JUZGADO DE PAZ[^.]{0,60}|JUZGADO LETRADO DE PRIMERA INSTANCIA[^.]{0,60}|BANCO HIPOTECARIO DEL URUGUAY|AGENCIA NACIONAL DE VIVIENDA)", na)
             it["juzgado"] = jz.group(1).split(" EDICTO")[0].title() if jz else ""
-            it["detalle"] = True
+            it["detalle"], it["det_v"] = True, 2
+            it["sucesion"] = it["sucesion"] or bool(re.search(r"SUCESI|YACENTE", na))
         except Exception as ex:
             print("aviso: falla", it["aviso"], ex)
     hist[it["id"]] = it
