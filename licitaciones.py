@@ -124,8 +124,28 @@ def render(cache):
     top_rows = "".join(f'<tr><td>{html.escape(l["fecha"][8:10] + "/" + l["fecha"][5:7])}</td><td>{html.escape(l["comprador"])}</td>'
                        f'<td>{html.escape(l["item"])}</td><td>{html.escape(l["proveedor"])}</td><td class="num">{money(l["total"], "$")}</td></tr>'
                        for l in top)
+    # muestra de Radar Pro: precios unitarios de referencia por ítem (35 días). 3 filas visibles, el resto con precios ocultos
+    grp = {}
+    for a in cache["awards"].values():
+        for l in a["lineas"]:
+            if l["moneda"] == "UYU" and l["precio_unitario"] and l["item"]:
+                grp.setdefault(l["item"].strip().upper()[:70], []).append(l)
+    ref = sorted(((k, v) for k, v in grp.items() if len(v) >= 4), key=lambda kv: -len(kv[1]))[:12]
+    pro_rows = ""
+    for n, (k, v) in enumerate(ref):
+        ps = sorted(l["precio_unitario"] for l in v)
+        provs = {}
+        for l in v:
+            provs[l["proveedor"]] = provs.get(l["proveedor"], 0) + 1
+        top_p = max(provs, key=provs.get)
+        if n < 3:
+            cells = (f'<td class="num">{money(ps[0], "$")}</td><td class="num">{money(ps[len(ps) // 2], "$")}</td>'
+                     f'<td class="num">{money(ps[-1], "$")}</td><td>{html.escape(top_p)}</td>')
+        else:
+            cells = '<td class="num blur">$ 0.000</td><td class="num blur">$ 0.000</td><td class="num blur">$ 00.000</td><td class="blur">Proveedor S.A.</td>'
+        pro_rows += f'<tr><td>{html.escape(k.capitalize())}</td><td class="num">{len(v)}</td>{cells}</tr>'
     page = PAGE
-    for a, b in {"{{N_ABIERTOS}}": str(len(abiertos)), "{{N_CIERRAN}}": str(len(cierran)), "{{N_ADJ}}": str(len(lines)),
+    for a, b in {"{{PRO}}": pro_rows, "{{N_ABIERTOS}}": str(len(abiertos)), "{{N_CIERRAN}}": str(len(cierran)), "{{N_ADJ}}": str(len(lines)),
                  "{{N_PROV}}": str(n_prov), "{{ACT}}": NOW.strftime("%d/%m/%Y %H:%M"), "{{DATA}}": data_js, "{{TOP}}": top_rows}.items():
         page = page.replace(a, b)
     open(f"{OUT}/index.html", "w").write(page)
@@ -160,6 +180,7 @@ th{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color
 .pro ul{margin:0;padding-left:18px;font-size:14px}.btn{justify-self:start;background:var(--accent);color:var(--bg);padding:10px 16px;border-radius:6px;font-weight:600;opacity:.55}
 #more{justify-self:start;font:600 14px var(--body);padding:8px 14px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--fg);cursor:pointer}
 footer{font-size:13px;color:var(--muted)}
+.blur{filter:blur(5px);user-select:none}
 </style></head><body><div class="wrap">
 <header><div class="eyebrow">Datos abiertos de ARCE · actualización diaria</div><h1>Radar de Compras Públicas</h1>
 <p class="lede">Lo que el Estado uruguayo está comprando ahora, en un buscador simple. Y quién ganó las últimas licitaciones y a qué precio.</p>
@@ -172,6 +193,8 @@ footer{font-size:13px;color:var(--muted)}
 <section><h2>Las adjudicaciones más grandes de la semana</h2><p class="note">Ítems adjudicados en pesos en los últimos 7 días, por monto total.</p>
 <div class="ledger"><table><thead><tr><th>Fecha</th><th>Comprador</th><th>Ítem</th><th>Ganó</th><th class="num">Total</th></tr></thead><tbody>{{TOP}}</tbody></table></div></section>
 <section class="pro"><h2>Radar Pro</h2><p class="note" style="margin:0">Para empresas que le venden al Estado.</p>
+<p class="note" style="margin:0">Muestra real de este mes: precio unitario al que se adjudicaron los ítems que más se compran. En Radar Pro ves la tabla completa, con todos los ítems y quién ganó cada vez.</p>
+<div class="ledger"><table><thead><tr><th>Ítem</th><th class="num">Veces</th><th class="num">Mínimo</th><th class="num">Mediana</th><th class="num">Máximo</th><th>Ganó más veces</th></tr></thead><tbody>{{PRO}}</tbody></table></div>
 <ul><li>Excel semanal con todas las adjudicaciones: proveedor ganador, precio unitario, cantidad y organismo</li><li>Llamados nuevos agrupados por rubro</li><li>Para saber a qué precio gana tu competencia antes de cotizar</li></ul>
 <span class="btn" aria-disabled="true">Disponible muy pronto · USD 10 por mes</span></section>
 <footer>Fuente: Agencia Reguladora de Compras Estatales (ARCE), datos abiertos en formato OCDS. Este sitio no es oficial. Verificá siempre los pliegos en comprasestatales.gub.uy.</footer>
