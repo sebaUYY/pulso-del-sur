@@ -57,6 +57,10 @@ jobs:
         continue-on-error: true
         timeout-minutes: 10
         run: python remates.py
+      - name: Abrí tu negocio (catálogo de trámites)
+        continue-on-error: true
+        timeout-minutes: 10
+        run: python hab.py
       - name: Páginas fijas
         run: cp -r static/. site/
       - name: Guardar cache del radar
