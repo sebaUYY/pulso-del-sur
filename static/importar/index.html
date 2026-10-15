@@ -1,0 +1,157 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Importá Fácil · costo de importar a Uruguay y qué le compra el Estado</title>
+<meta name="description" content="Calculá cuánto te cuesta un producto importado de China puesto en Uruguay (arancel por NCM, tasa consular, IVA y anticipos) y cuál es el precio máximo que podés pagar para venderlo al Estado o en Mercado Libre con margen.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f5f4ef;--surface:#fff;--fg:#151d24;--muted:#5d6871;--rule:#dde1e3;--accent:#0b6e4f;--hot:#b4410f;--hl:#e9f4ef;
+--display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1518;--surface:#172024;--fg:#e5ecee;--muted:#98a6ad;--rule:#2a363c;--accent:#4cc79a;--hot:#f6935c;--hl:#173229;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding:28px max(16px,env(safe-area-inset-left,0px)) 64px max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:28px}.wrap>*{min-width:0}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(36px,6vw,60px)/.95 var(--display);font-stretch:78%;margin:8px 0}h2{font:700 24px/1.15 var(--display);font-stretch:85%;margin:0 0 6px}
+h3{font:700 17px/1.2 var(--display);font-stretch:88%;margin:0 0 8px}
+.lede{color:var(--muted);max-width:70ch;margin:0}.muted{color:var(--muted);font-size:14px}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;min-width:0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:18px}
+label{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+input,select{font:inherit;color:var(--fg);padding:9px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:var(--fg)}.chk input{width:auto;margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}th,td{padding:7px 6px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 11.5px var(--mono);text-transform:uppercase;color:var(--muted)}.num{text-align:right;font-family:var(--mono);white-space:nowrap}
+tr.tot td{font-weight:600;border-top:2px solid var(--fg)}tr.sub td{color:var(--muted)}
+.big{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:12px}
+.kpi{background:var(--hl);border-radius:8px;padding:14px}.kpi b{display:block;font:700 26px/1.1 var(--display)}.kpi span{font-size:13px;color:var(--muted)}
+.res{max-height:260px;overflow:auto;border:1px solid var(--rule);border-radius:6px;margin-top:6px}
+.res button{display:grid;grid-template-columns:110px 1fr 54px;gap:8px;width:100%;text-align:left;padding:8px 10px;border:0;border-bottom:1px solid var(--rule);background:none;color:var(--fg);font:13px var(--body);cursor:pointer}
+.res button:hover{background:var(--hl)}.res code{font:12px var(--mono)}
+.sel{margin-top:8px;padding:10px;border-radius:6px;background:var(--hl);font-size:14px}
+.tag{font:500 11.5px var(--mono);padding:2px 6px;border:1px solid var(--rule);border-radius:4px;white-space:nowrap}.tag.hot{color:var(--hot);border-color:var(--hot)}
+.btn{display:inline-block;background:var(--accent);color:var(--surface);padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-size:15px}
+.btn.sm{padding:5px 10px;font-size:13px}
+a{color:var(--accent)}footer{font-size:13px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;counter-reset:s}
+.steps div{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:14px;font-size:14px}.steps b{display:block;font:700 15px var(--display);margin-bottom:4px}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">Para pymes que importan · Uruguay</div><h1>Importá Fácil</h1>
+<p class="lede">Cuánto te cuesta de verdad un producto importado de China puesto en tu depósito, cuánta plata necesitás para nacionalizarlo y cuál es el precio máximo que podés pagarle al proveedor para revenderlo con margen, al Estado o en Mercado Libre.</p>
+<p class="lede" style="margin-top:8px"><a href="../">← Pulso del Sur</a> · <a href="#oportunidades">Lo que el Estado compra seguido</a> · <a href="#contenedor">Contenedor compartido</a></p></header>
+
+<section class="steps">
+<div><b>1. Buscá la posición</b>Escribí el producto o el código NCM: sale el arancel para mercadería de fuera del Mercosur.</div>
+<div><b>2. Cargá tu cotización</b>Precio FOB, flete, unidades y los gastos que te pasen el forwarder y el despachante.</div>
+<div><b>3. Mirá el costo real</b>Separado en lo que es costo y lo que recuperás como crédito fiscal (IVA y anticipos).</div>
+<div><b>4. Fijá el precio</b>Precio de venta para tu margen, o al revés: el FOB máximo para llegar al precio que paga el Estado.</div>
+</section>
+
+<section class="cols">
+<div class="panel" style="display:grid;gap:12px;align-content:start">
+<h2>Tu importación</h2>
+<label>Producto o código NCM<input id="q" type="search" placeholder="Ej.: freidora, 8516.60, mochila, toner" autocomplete="off"></label>
+<div class="res" id="res" hidden></div>
+<div class="sel" id="sel">Elegí una posición arancelaria (o cargá el arancel a mano abajo).</div>
+<div class="grid2">
+<label>Arancel (TGA extrazona, %)<input id="tga" type="number" step="0.1" value="0"></label>
+<label>Unidades<input id="u" type="number" value="1000" min="1"></label>
+<label>Precio FOB total (USD)<input id="fob" type="number" value="5000"></label>
+<label>Flete internacional (USD)<input id="fl" type="number" value="1200"></label>
+<label>Seguro (USD)<input id="se" type="number" value="0"></label>
+<label>Tipo de cambio (UYU por USD)<input id="tc" type="number" step="0.001" value="40.2"></label>
+</div>
+<h3 style="margin-top:6px">Gastos en Uruguay (UYU, sin IVA)</h3>
+<div class="grid2">
+<label>Despachante y sus gastos<input id="g1" type="number" value="0"></label>
+<label>Forwarder / gastos locales de la naviera<input id="g2" type="number" value="0"></label>
+<label>Terminal y puerto<input id="g3" type="number" value="0"></label>
+<label>Depósito<input id="g4" type="number" value="0"></label>
+<label>Flete interno<input id="g5" type="number" value="0"></label>
+<label>Otros (permisos, banco)<input id="g6" type="number" value="0"></label>
+</div>
+<label class="chk"><input type="checkbox" id="bk"> Es bien de capital (BK) o informático (BIT) con arancel 0% o 2%: no paga tasa consular</label>
+<label class="chk"><input type="checkbox" id="irae"> Es un bien de consumo del anexo del anticipo de IRAE (4%)</label>
+<label class="chk"><input type="checkbox" id="contri" checked> Importo como empresa contribuyente de IVA (recupero el IVA y los anticipos)</label>
+<label class="chk"><input type="checkbox" id="red"> El producto tiene IVA tasa mínima (10%)</label>
+</div>
+
+<div class="panel" style="display:grid;gap:14px;align-content:start">
+<h2>Costo puesto en Uruguay</h2>
+<div class="big"><div class="kpi"><b id="kcu">—</b><span>costo por unidad (sin IVA)</span></div><div class="kpi"><b id="kcaja">—</b><span>plata que necesitás para nacionalizar</span></div><div class="kpi"><b id="kmult">—</b><span>cuántas veces el FOB</span></div></div>
+<table><thead><tr><th>Concepto</th><th>Base</th><th class="num">USD</th></tr></thead><tbody id="tb"></tbody></table>
+<p class="muted" style="margin:0" id="nota"></p>
+<h3>Precio de venta</h3>
+<div class="grid2">
+<label>Margen sobre el precio (%)<input id="mg" type="number" value="25"></label>
+<label>Canal<select id="canal"><option value="ml">Mercado Libre</option><option value="estado">Estado (licitación o compra directa)</option><option value="mayor">Venta mayorista</option></select></label>
+<label id="lcom">Comisión del canal (%, mirá la de tu categoría)<input id="com" type="number" step="0.1" value="0"></label>
+<label id="lenv">Envío por unidad (UYU)<input id="env" type="number" value="0"></label>
+</div>
+<div class="big"><div class="kpi"><b id="kpv">—</b><span>precio de venta por unidad, con IVA (UYU)</span></div><div class="kpi"><b id="kgan">—</b><span>ganancia total del lote (UYU, antes de impuestos a la renta)</span></div></div>
+<div id="rev" class="sel" hidden></div>
+</div>
+</section>
+
+<section class="panel" id="oportunidades">
+<h2>Lo que el Estado compra seguido</h2>
+<p class="lede" style="margin-bottom:12px">Bienes que en el último año completo compraron 3 o más organismos, al menos 8 veces, con el precio unitario al que se adjudicaron. Tocá <b>Usar</b> y la calculadora te dice el precio FOB máximo que podés pagar para venderlo a ese precio con tu margen.</p>
+<div class="grid2" style="max-width:640px"><input id="oq" type="search" placeholder="Buscar: toner, silla, notebook, papel…"><select id="of"><option value="">Todos</option><option value="libre">Sin habilitación especial</option><option value="reg">Requiere registro (salud)</option></select></div>
+<div style="overflow-x:auto;margin-top:12px;max-height:620px;overflow-y:auto"><table><thead><tr><th>Ítem</th><th class="num">Compras</th><th class="num">Organismos</th><th class="num">Total del año (UYU)</th><th class="num">Precio unitario (mediana)</th><th class="num">Proveedores</th><th></th></tr></thead><tbody id="ot"></tbody></table></div>
+<p class="muted">Fuente: adjudicaciones del último año completo de la Agencia Reguladora de Compras Estatales (datos abiertos). ARCE no indica si el precio unitario incluye IVA: la calculadora lo toma como precio con IVA, que es el supuesto más prudente. Para venderle al Estado hay que estar inscripto en el RUPE. Los productos médicos requieren registro en el MSP.</p>
+</section>
+
+<section class="panel" id="contenedor" style="display:grid;gap:10px">
+<h2>Contenedor compartido</h2>
+<p class="lede">Si importás poco, el flete de un contenedor completo no te cierra. Estamos juntando pymes que quieran compartir un contenedor desde China: cuando haya suficientes interesados, coordinamos con un forwarder y cada uno paga su parte.</p>
+<div><a class="btn" href="https://pulsodelsur.beehiiv.com/subscribe">Anotarme a la lista</a></div>
+<p class="muted" style="margin:0">Al anotarte recibís también el newsletter de Pulso del Sur. Nadie te cobra nada por anotarte.</p>
+</section>
+
+<footer>Estimación con las normas vigentes: arancel nacional del MEF (versión de febrero de 2025; cambios posteriores pueden no estar), tasa consular 5% (Ley 19.535, art. 265), tasa de servicios aduaneros 0,2% con tope USD 50, tasa de inspección no intrusiva 85 UI por DUA (Decreto 235/024), IVA 22% o 10% sobre valor en aduana más arancel, anticipo de IVA 10% o 3% y anticipo de IRAE 4% (Decreto 220/998 y Decreto 788/008). No incluye IMESI ni la tasa LATU de alimentos. Confirmá siempre con tu despachante antes de comprar. <a href="../">Pulso del Sur</a></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const nz=s=>String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+const f0=v=>Math.round(v).toLocaleString("es-UY"),f2=v=>v.toLocaleString("es-UY",{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let N=null,P={},UI=6.66,OP=[],target=null;
+const REG=/BOMBA DE INFUSION|RESPIRADOR|ANESTESIA|JERINGA|ANGIOPLASTIA|LAPAROSCOPIA|GLUCOSA|SUTURA|AUDIOPROTESIS|INTRAUTERINO|ENTERAL|HERIDA|DESINFECTANTE|CATETER|AGUJA|GUANTE|APOSITO|GASA|SONDA|MASCARA|TUBULADURA|REACTIVO|INSUMOS PARA EQUIPO|PINZA|BALON|GUIA HIDROFILICA|SENSOR/;
+fetch("../datos/data.json").then(r=>r.json()).then(d=>{const u=d.paises.UY;$("tc").value=u.fx.at(-1)[1];const x=u.ui.at(-1);UI=Array.isArray(x)?+x[1]:+u.ui[1];calc()}).catch(()=>{});
+fetch("ncm.json").then(r=>r.json()).then(d=>{N=d.filas;P=d.partidas;search()});
+fetch("oportunidades.json").then(r=>r.json()).then(d=>{OP=d.items;drawOP()});
+function search(){const q=nz($("q").value).trim();const r=$("res");if(!N||q.length<3){r.hidden=true;return}
+ const code=q.replace(/[^\d]/g,"");const words=q.split(/\s+/).filter(Boolean);
+ const out=[];for(const x of N){const d=x[0].replace(/\./g,"");let ok=false;
+  if(/^\d+$/.test(q.replace(/[.\s]/g,"")))ok=d.startsWith(code);else{const t=nz((P[d.slice(0,4)]||"")+" "+x[1]);ok=words.every(w=>t.includes(w))}
+  if(ok){out.push(x);if(out.length>=60)break}}
+ r.hidden=false;r.innerHTML=out.map((x,i)=>`<button type="button" data-i="${N.indexOf(x)}"><code>${x[0]}</code><span>${esc(x[1].split(" › ").slice(-2).join(" › "))}</span><span class="num">${String(x[2]).replace(".",",")}%</span></button>`).join("")||'<p class="muted" style="padding:8px">Sin resultados. Probá con otra palabra o con el código.</p>'}
+$("q").addEventListener("input",search);
+$("res").addEventListener("click",e=>{const b=e.target.closest("button[data-i]");if(!b)return;const x=N[+b.dataset.i];
+ $("tga").value=x[2];$("bk").checked=!!x[3]&&(x[2]===0||x[2]===2);
+ $("sel").innerHTML=`<b>${x[0]}</b> · arancel ${String(x[2]).replace(".",",")}%${x[3]?` · <span class="tag">${x[3]}</span>`:""}<br><span class="muted">${esc(P[x[0].replace(/\./g,"").slice(0,4)]||"")} › ${esc(x[1])}</span>`;
+ $("res").hidden=true;calc()});
+function v(id){return +$(id).value||0}
+function calc(){const tc=v("tc")||1,u=Math.max(1,v("u")),tga=v("tga")/100,red=$("red").checked,contri=$("contri").checked;
+ const fob=v("fob"),cif=fob+v("fl")+v("se");const ar=cif*tga;
+ const cons=($("bk").checked&&(tga===0||tga===0.02))?0:cif*0.05;const tsa=Math.min(cif*0.002,50);const scan=85*UI/tc;
+ const baseIva=(cif+ar)*(contri?1:1.5);const iva=baseIva*(red?0.10:0.22);const aiva=contri?(cif+ar)*(red?0.03:0.10):0;const airae=$("irae").checked?(cif+ar)*0.04:0;
+ const loc=(v("g1")+v("g2")+v("g3")+v("g4")+v("g5")+v("g6"))/tc;
+ const costo=cif+ar+cons+tsa+scan+loc+(contri?0:iva);const recup=(contri?iva:0)+aiva+airae;const caja=costo+recup;
+ const rows=[["Precio FOB","",fob],["Flete y seguro","",v("fl")+v("se")],["Valor CIF (valor en aduana)","",cif,"sub"],["Arancel",(v("tga")+"").replace(".",",")+"% del CIF",ar],["Tasa consular",cons?"5% del CIF":"exonerada",cons],["Tasa de servicios aduaneros","0,2% del CIF, tope USD 50",tsa],["Tasa de inspección no intrusiva","85 UI por DUA",scan],["Gastos en Uruguay","despachante, puerto, depósito…",loc],["Costo de la mercadería","",costo,"tot"],["IVA de importación",(red?"10%":"22%")+" de CIF + arancel"+(contri?"":" (+50%: no contribuyente)"),iva,contri?"":"sub"],["Anticipo de IVA",contri?(red?"3%":"10%")+" de CIF + arancel":"no corresponde",aiva],["Anticipo de IRAE",$("irae").checked?"4% de CIF + arancel":"no aplica",airae],["Plata total para nacionalizar","costo + lo que adelantás",caja,"tot"]];
+ $("tb").innerHTML=rows.map(r=>`<tr class="${r[3]||""}"><td>${r[0]}</td><td class="muted">${r[1]}</td><td class="num">${f0(r[2])}</td></tr>`).join("");
+ $("nota").textContent=contri?`USD ${f0(recup)} (IVA y anticipos) se descuentan de tus pagos a la DGI en los meses siguientes: no son costo, pero tenés que adelantarlos.`:"Como no sos contribuyente de IVA, el IVA de importación es costo.";
+ const cu=costo/u;$("kcu").textContent="USD "+f2(cu);$("kcaja").textContent="USD "+f0(caja);$("kmult").textContent=fob?(costo/fob).toFixed(2).replace(".",",")+"×":"—";
+ const canal=$("canal").value;$("lcom").style.display=canal==="ml"?"":"none";$("lenv").style.display=canal==="ml"?"":"none";
+ const com=canal==="ml"?v("com")/100:0,env=canal==="ml"?v("env")/tc:0,mg=v("mg")/100,ivaV=red?0.10:0.22;
+ const neto=(cu+env)/Math.max(0.01,1-mg-com);const pv=neto*(1+ivaV);$("kpv").textContent="$ "+f0(pv*tc);$("kgan").textContent="$ "+f0(neto*mg*u*tc);
+ if(target){const objetivoNeto=target.mediana/(1+ivaV)/tc;const fixed=(scan+loc+(contri?0:iva))/u+env;const k=(cif?cif/(fob||1):1)*(1+tga+(cons?0.05:0)+0.002+(contri?0:(red?0.1:0.22)*1.5*(1+tga)));
+  const fobMax=(objetivoNeto*(1-mg-com)-fixed)/k;
+  $("rev").hidden=false;$("rev").innerHTML=`<b>${esc(target.item)}</b>: el Estado pagó una mediana de $ ${f2(target.mediana)} por ${esc(target.unidad.toLowerCase())} (${target.adjudicaciones} compras en ${target.compradores} organismos).<br>Con tu margen de ${v("mg")}%, un arancel de ${String(v("tga")).replace(".",",")}% (elegí la posición arriba) y la relación flete/FOB que cargaste, el <b>precio FOB máximo es USD ${fobMax>0?f2(fobMax):"—"} por unidad</b>${fobMax>0?"":": a ese precio no hay margen"}. <a href="${target.ejemplo}" target="_blank" rel="noopener">ver una compra</a>`}
+}
+document.querySelectorAll("input,select").forEach(e=>{if(e.id!=="q"&&e.id!=="oq"&&e.id!=="of")e.addEventListener("input",calc)});
+function drawOP(){const q=nz($("oq").value),fl=$("of").value;
+ $("ot").innerHTML=OP.filter(o=>{const r=REG.test(o.item);return(!q||nz(o.item).includes(q))&&(!fl||(fl==="reg")===r)}).slice(0,250).map((o,i)=>`<tr><td>${esc(o.item)}${REG.test(o.item)?' <span class="tag hot">registro MSP</span>':""}<br><span class="muted">por ${esc(o.unidad.toLowerCase())} · el principal proveedor ganó ${Math.round(o.top_share*100)}% de las compras</span></td><td class="num">${o.adjudicaciones}</td><td class="num">${o.compradores}</td><td class="num">${f0(o.monto)}</td><td class="num">$ ${f2(o.mediana)}<br><span class="muted">${f0(o.p25)} a ${f0(o.p75)}</span></td><td class="num">${o.proveedores}</td><td><button class="btn sm" data-k="${OP.indexOf(o)}">Usar</button></td></tr>`).join("")}
+$("oq").addEventListener("input",drawOP);$("of").addEventListener("input",drawOP);
+$("ot").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;target=OP[+b.dataset.k];$("canal").value="estado";calc();$("q").value=target.item.split(" ").slice(0,2).join(" ").toLowerCase();search();window.scrollTo({top:0,behavior:"smooth"})});
+calc();
+</script></body></html>
