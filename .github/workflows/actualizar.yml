@@ -53,6 +53,10 @@ jobs:
         run: |
           if [ ! -f impo/ncm.json ] || [ "$(date +%d)" = "01" ]; then python impo.py --auto; fi
           mkdir -p site/importar && cp impo/*.json site/importar/
+      - name: Remates judiciales (IMPO)
+        continue-on-error: true
+        timeout-minutes: 10
+        run: python remates.py
       - name: Páginas fijas
         run: cp -r static/. site/
       - name: Guardar cache del radar
@@ -63,6 +67,7 @@ jobs:
           git add licitaciones/cache.json
           git add canasta/resumen-*.json canasta/stamp.txt 2>/dev/null || true
           git add impo/*.json 2>/dev/null || true
+          git add remates/historico.json 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Actualizar caches" && git push)
       - uses: actions/upload-pages-artifact@v3
         with:
