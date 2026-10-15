@@ -67,6 +67,10 @@ jobs:
         run: |
           pip install pymupdf==1.24.10
           python sucesiones.py
+      - name: Consejos de Salarios (IMPO)
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python salarios.py
       - name: Páginas fijas
         run: cp -r static/. site/
       - name: Guardar cache del radar
@@ -79,6 +83,7 @@ jobs:
           git add impo/*.json 2>/dev/null || true
           git add remates/historico.json 2>/dev/null || true
           git add sucesiones/historico.json 2>/dev/null || true
+          git add salarios/cache.json 2>/dev/null || true
           git diff --cached --quiet || (git commit -m "Actualizar caches" && git push)
       - uses: actions/upload-pages-artifact@v3
         with:
