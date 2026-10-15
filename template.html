@@ -107,6 +107,8 @@ input,select{font:15px var(--mono);padding:8px 10px;border:1px solid var(--rule)
 .cta-row span{font-size:14px;color:var(--muted)}
 .tool ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14px}
 .cta.off{opacity:.55;cursor:default}
+.preview summary{cursor:pointer;color:var(--accent);font-weight:600}
+.preview .ledger table{min-width:560px}
 </style>
 
 <div class="wrap">
@@ -154,6 +156,15 @@ input,select{font:15px var(--mono);padding:8px 10px;border:1px solid var(--rule)
       <li>Serie diaria lista para Power BI</li>
       <li>Tipo de cambio real de Uruguay frente a Argentina y Brasil</li>
     </ul>
+    <details class="preview">
+      <summary>Ver qué trae el Excel (datos reales de hoy)</summary>
+      <p class="note" style="margin-top:12px">Hoja "Cierre mensual": así se ve para tres países en los últimos tres meses. El Excel trae los 7 países desde enero 2024.</p>
+      <div class="ledger">{{PV1}}</div>
+      <p class="note" style="margin-top:16px">Hoja "Presupuesto": el supuesto se carga solo (expectativa del mercado o promedio de 3 meses) y lo podés cambiar. Debajo calcula cuánto vale tu presupuesto en dólares en cada escenario.</p>
+      <div class="ledger">{{PV2}}</div>
+      <p class="note" style="margin-top:12px">Además: consulta y conversión de montos, serie diaria para Power BI y tipo de cambio real.</p>
+    </details>
+    <a href="datos/muestra-pulso-pro.xlsx">Descargar una muestra gratis (Excel)</a>
     <span class="cta off" aria-disabled="true">Disponible muy pronto</span>
   </div>
 </section>
