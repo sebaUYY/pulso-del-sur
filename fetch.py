@@ -209,6 +209,8 @@ def tcr(p_uy, p_x):
     m_uy, m_x = monthly(p_uy["fx"]), monthly(p_x["fx"])
     out = {}
     for m in sorted(set(m_uy) & set(m_x) & set(p_uy["cpi_m"]) & set(p_x["cpi_m"])):
+        if not (p_x["cpi_m"][m] and p_uy["cpi_m"][m] and m_x[m]["promedio"]):
+            continue                                            # meses con IPC aún sin publicar (None)
         e = m_uy[m]["promedio"] / m_x[m]["promedio"]          # pesos uruguayos por unidad de moneda X
         out[m] = e * p_x["cpi_m"][m] / p_uy["cpi_m"][m]
     if not out:
