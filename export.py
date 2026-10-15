@@ -202,6 +202,29 @@ for base in BASES:
         fh.write(f'<?xml version="1.0" encoding="UTF-8"?>\n<rates lcy="{base}" generated="{escape(GEN)}" source="Pulso del Sur">\n'
                  + "\n".join(items) + "\n</rates>\n")
 
+# muestra gratis del plan Pro: últimos 3 meses de cierres y una hoja de supuestos, solo valores
+ms = Workbook()
+w = ms.active
+w.title = "Leeme"
+for line in ["Pulso del Sur Pro · MUESTRA GRATIS", f"Datos al {GEN}. Moneda local por 1 USD.",
+             "Esta muestra trae los últimos 3 meses. La versión Pro trae desde enero 2024, la hoja de presupuesto",
+             "con fórmulas y escenarios editables, consulta y conversión de montos, serie diaria y tipo de cambio real.",
+             "Más información: https://sebauyy.github.io/pulso-del-sur/#pro"]:
+    w.append([line])
+w.column_dimensions["A"].width = 100
+w = ms.create_sheet("Cierre mensual")
+w.append(["Mes", "País", "Moneda", "Cierre", "Promedio (días hábiles)"])
+for c in w[1]:
+    c.font, c.fill = hdr_font, hdr_fill
+for m in months[-3:]:
+    for k in ORDER:
+        v = P[k]["mensual"].get(m)
+        if v:
+            w.append([m, P[k]["nombre"], P[k]["moneda"], v["cierre"], v["promedio"]])
+for col, wd in zip("ABCDE", [10, 12, 9, 14, 22]):
+    w.column_dimensions[col].width = wd
+ms.save(f"{OUT}/muestra-pulso-pro.xlsx")
+
 # índice de archivos (para la página y para quien quiera automatizar)
 files = sorted(os.path.relpath(os.path.join(r, f), "site") for r, _, fs in os.walk(OUT) for f in fs)
 json.dump({"generado": GEN, "archivos": files}, open(f"{OUT}/indice.json", "w"), ensure_ascii=False, indent=1)
