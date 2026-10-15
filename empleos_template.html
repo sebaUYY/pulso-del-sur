@@ -1,0 +1,77 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Empleos públicos UY · Pulso del Sur</title>
+<meta name="description" content="Todos los llamados abiertos y próximos de Uruguay Concursa en una lista que se puede filtrar por departamento, organismo, tipo de tarea y fecha de cierre. Se actualiza todos los días.">
+<link rel="alternate" type="application/rss+xml" title="Empleos públicos UY" href="feed.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f5f7f8;--surface:#fff;--fg:#14212b;--muted:#5d6b75;--rule:#d9e0e4;--accent:#0f6b6f;--warn:#a4441c;
+--display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0f171d;--surface:#16212a;--fg:#e4ebef;--muted:#93a3ae;--rule:#2a3843;--accent:#4fc1c0;--warn:#f08a5d;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding:32px max(16px,env(safe-area-inset-left,0px)) 56px max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:28px}.wrap>*{min-width:0}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(34px,6vw,56px)/.95 var(--display);font-stretch:78%;margin:8px 0}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px}
+.kpi b{display:block;font:700 28px/1 var(--display);font-variant-numeric:tabular-nums}.kpi span{font-size:13px;color:var(--muted)}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:10px}
+input,select{font:inherit;padding:10px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--fg);width:100%}
+.list{display:grid;gap:10px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px 16px;display:grid;gap:4px}
+.card h3{margin:0;font:700 18px/1.2 var(--display);font-stretch:88%}.card h3 a{color:inherit;text-decoration:none}.card h3 a:hover{color:var(--accent)}
+.meta{font-size:14px;color:var(--muted)}.row{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px}
+.tag{font:500 12px var(--mono);padding:2px 6px;border-radius:4px;border:1px solid var(--rule)}
+.tag.open{color:var(--accent);border-color:var(--accent)}.tag.soon{color:var(--warn);border-color:var(--warn)}
+.cta{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px;display:grid;gap:8px}
+.btn{justify-self:start;background:var(--accent);color:var(--surface);padding:10px 16px;border-radius:6px;font-weight:600;text-decoration:none}
+a{color:var(--accent)}footer{font-size:13px;color:var(--muted)}.count{font-size:14px;color:var(--muted)}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">Uruguay Concursa · actualizado {{FECHA}}</div><h1>Empleos públicos UY</h1>
+<p class="lede">Todos los llamados abiertos y próximos del Estado en una sola lista: filtrá por departamento, organismo o tipo de tarea y mirá qué cierra esta semana. La inscripción se hace siempre en el portal oficial.</p>
+<p class="lede" style="margin-top:8px"><a href="../">← Pulso del Sur</a> · <a href="llamados.csv">Descargar CSV</a> · <a href="feed.xml">RSS</a></p></header>
+<section class="kpis">
+<div class="kpi"><b>{{ABIERTOS}}</b><span>llamados abiertos</span></div>
+<div class="kpi"><b>{{PROXIMOS}}</b><span>próximos a abrir</span></div>
+<div class="kpi"><b>{{CIERRAN}}</b><span>cierran en 7 días</span></div>
+<div class="kpi"><b>{{PUESTOS}}</b><span>puestos informados</span></div></section>
+<section class="cta"><strong>Recibí los llamados nuevos cada lunes</strong>
+<span class="meta">Un correo con los llamados que abrieron en la semana, ordenados por departamento. Gratis.</span>
+<a class="btn" href="https://pulsodelsur.beehiiv.com/subscribe">Suscribirme</a></section>
+<section class="filters">
+<input id="q" type="search" placeholder="Buscar cargo, título, organismo…" aria-label="Buscar">
+<select id="dep" aria-label="Departamento"><option value="">Todos los departamentos</option></select>
+<select id="tipo" aria-label="Tipo de tarea"><option value="">Todo tipo de tarea</option></select>
+<select id="est" aria-label="Estado"><option value="">Abiertos y próximos</option><option>Abierto</option><option>Próximo</option></select>
+<select id="ord" aria-label="Orden"><option value="cierra">Cierra antes</option><option value="nuevo">Más nuevos</option><option value="sueldo">Mayor sueldo</option></select>
+</section>
+<div class="count" id="count"></div>
+<section class="list" id="list"></section>
+<footer>Fuente: Uruguay Concursa (ONSC), datos públicos. Pulso del Sur no tiene relación con la ONSC; ante cualquier diferencia vale lo publicado en el portal oficial. {{N}} llamados.</footer>
+</div>
+<script>
+const D={{DATA}};
+const $=id=>document.getElementById(id),esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fill=(id,k)=>[...new Set(D.map(r=>r[k]).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"es")).forEach(v=>$(id).insertAdjacentHTML("beforeend",`<option>${esc(v)}</option>`));
+fill("dep","depto");fill("tipo","tipo");
+const today=new Date();today.setHours(0,0,0,0);
+const days=s=>s?Math.round((new Date(s+"T00:00:00")-today)/864e5):null;
+const fmt=s=>s?s.split("-").reverse().join("/"):"—";
+function draw(){
+ const q=$("q").value.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+ let r=D.filter(x=>(!$("dep").value||x.depto===$("dep").value)&&(!$("tipo").value||x.tipo===$("tipo").value)&&(!$("est").value||x.estado===$("est").value)
+  &&(!q||[x.cargo,x.titulo,x.organismo,x.unidad].join(" ").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(q)));
+ const o=$("ord").value;
+ r.sort(o==="nuevo"?(a,b)=>b.id-a.id:o==="sueldo"?(a,b)=>(b.sueldo||0)-(a.sueldo||0):(a,b)=>(a.estado!=="Abierto")-(b.estado!=="Abierto")||a.cierra.localeCompare(b.cierra));
+ $("count").textContent=`${r.length} llamados`;
+ $("list").innerHTML=r.slice(0,300).map(x=>{const d=days(x.cierra);const soon=x.estado==="Abierto"&&d!==null&&d<=7;
+  return `<article class="card"><div class="row"><span class="tag ${x.estado==="Abierto"?"open":""}">${esc(x.estado)}</span>${soon?`<span class="tag soon">cierra en ${d} día${d===1?"":"s"}</span>`:""}<span class="meta">${esc(x.depto)}</span></div>
+  <h3><a href="${x.url}" target="_blank" rel="noopener">${esc(x.cargo)}</a></h3>
+  <div class="meta">${esc(x.organismo)}${x.unidad?" · "+esc(x.unidad):""}</div>
+  <div class="row"><span>Inscripción: ${fmt(x.abre)} → ${fmt(x.cierra)}</span>${x.puestos?`<span>${x.puestos} puesto${x.puestos>1?"s":""}</span>`:""}${x.tipo?`<span>${esc(x.tipo)}</span>`:""}${x.vinculo?`<span>${esc(x.vinculo)}</span>`:""}</div>
+  ${x.sueldo_txt?`<div class="meta">Sueldo: ${esc(x.sueldo_txt.slice(0,140))}</div>`:""}</article>`}).join("")||'<p class="meta">No hay llamados con esos filtros.</p>';
+}
+["q","dep","tipo","est","ord"].forEach(id=>$(id).addEventListener("input",draw));draw();
+</script></body></html>
