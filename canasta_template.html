@@ -1,0 +1,59 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Canasta UY · Pulso del Sur</title>
+<meta name="description" content="Precios de supermercado en Uruguay con datos oficiales de Defensa del Consumidor: cuánto cuesta cada producto, cómo cambió en el año y qué cadena es más barata.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--bg:#f5f7f8;--surface:#fff;--fg:#14212b;--muted:#5d6b75;--rule:#d9e0e4;--accent:#0f6b6f;--up:#a4441c;--down:#1d7a46;
+--display:"Archivo","Arial Narrow",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root{--bg:#0f171d;--surface:#16212a;--fg:#e4ebef;--muted:#93a3ae;--rule:#2a3843;--accent:#4fc1c0;--up:#f08a5d;--down:#6fcf97;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);padding:32px max(16px,env(safe-area-inset-left,0px)) 56px max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:28px}.wrap>*{min-width:0}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:800 clamp(34px,6vw,56px)/.95 var(--display);font-stretch:78%;margin:8px 0}h2{font:700 22px/1.15 var(--display);font-stretch:85%;margin:0 0 10px}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:14px}
+.kpi b{display:block;font:700 28px/1 var(--display);font-variant-numeric:tabular-nums}.kpi span{font-size:13px;color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px;overflow-x:auto}
+.bars{display:grid;gap:6px}.bar{display:grid;grid-template-columns:minmax(110px,180px) minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:14px}
+.bar i{display:block;height:12px;border-radius:3px;background:var(--accent)}.bar i.hi{background:var(--up)}
+.num{font:500 13px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+input{font:inherit;padding:10px;border:1px solid var(--rule);border-radius:6px;background:var(--surface);color:var(--fg);width:100%}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:7px 8px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font:500 12px var(--mono);color:var(--muted);text-transform:uppercase}td.r{text-align:right;font-family:var(--mono);white-space:nowrap}
+.up{color:var(--up)}.down{color:var(--down)}.muted{color:var(--muted);font-size:13px}
+details summary{cursor:pointer;color:var(--accent)}
+a{color:var(--accent)}footer{font-size:13px;color:var(--muted)}
+</style></head><body><div class="wrap">
+<header><div class="eyebrow">Defensa del Consumidor · datos hasta {{ULT}}</div><h1>Canasta UY</h1>
+<p class="lede">Precios de supermercado con los datos oficiales que las cadenas informan cada día al Sistema de Información de Precios al Consumidor. Buscá un producto, mirá cómo cambió desde {{DESDE}} y en qué cadena sale más barato.</p>
+<p class="lede" style="margin-top:8px"><a href="../">← Pulso del Sur</a></p></header>
+<section class="kpis">
+<div class="kpi"><b>{{NPROD}}</b><span>productos seguidos</span></div>
+<div class="kpi"><b>{{MEDVAR}}%</b><span>variación mediana desde {{DESDE}}</span></div>
+<div class="kpi"><b>{{SUBEN}} / {{BAJAN}}</b><span>productos que suben / bajan</span></div>
+<div class="kpi"><b>{{NOBS}}</b><span>precios analizados</span></div></section>
+<section class="panel"><h2>¿Qué cadena es más barata?</h2>
+<p class="muted" style="margin:0 0 12px">Índice 100 = precio mediano entre cadenas para el mismo producto, en {{ULT}}. Menos de 100 es más barato. Se comparan solo productos idénticos (misma marca y presentación).</p>
+<div class="bars" id="bars"></div></section>
+<section class="panel"><h2>Buscá un producto</h2>
+<input id="q" type="search" placeholder="Ej.: leche, arroz, yerba, aceite…" aria-label="Buscar producto">
+<div style="margin-top:12px;overflow-x:auto"><table><thead><tr><th>Producto</th><th style="text-align:right">Precio mediano</th><th style="text-align:right">Desde {{DESDE}}</th><th>Más barato en</th></tr></thead><tbody id="tb"></tbody></table></div></section>
+<footer>Fuente: Sistema de Información de Precios al Consumidor (Área Defensa del Consumidor, MEF), en el catálogo de datos abiertos del Estado. La fuente se publica con algunos meses de atraso; esta página se actualiza sola cuando sale un archivo nuevo. Precios medianos en pesos uruguayos; un establecimiento puede tener precios distintos al mediano. Actualizado {{FECHA}}.</footer>
+</div>
+<script>
+const D={{DATA}};
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mx=Math.max(...D.cadenas.map(c=>c.indice));
+$("bars").innerHTML=D.cadenas.map(c=>`<div class="bar"><span>${esc(c.cadena)}</span><i class="${c.indice>100?"hi":""}" style="width:${(c.indice-80)/(mx-80)*100}%"></i><span class="num">${c.indice.toFixed(1).replace(".",",")}</span></div>`).join("");
+const pct=v=>v==null?"—":`<span class="${v>0.005?"up":v<-0.005?"down":""}">${(v>0?"+":"")+(v*100).toFixed(1).replace(".",",")}%</span>`;
+const norm=s=>s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+function draw(){const q=norm($("q").value);
+ const r=D.prods.filter(p=>!q||norm(p.n).includes(q)).slice(0,120);
+ $("tb").innerHTML=r.map(p=>{const last=p.s[p.s.length-1];const cheap=p.c.length>1?p.c.filter(c=>c[1]===p.c[0][1]).map(c=>c[0]).slice(0,3).join(", ")+` ($ ${p.c[0][1]})`:"—";
+  return `<tr><td>${esc(p.n)}<details><summary class="muted">por mes y cadena</summary><div class="muted">${D.meses.map((m,i)=>`${m}: ${p.s[i]==null?"—":"$ "+p.s[i]}`).join(" · ")}</div><div class="muted">${p.c.map(c=>`${esc(c[0])} $ ${c[1]}`).join(" · ")||"Sin datos por cadena"}</div></details></td>
+  <td class="r">$ ${last}</td><td class="r">${pct(p.v)}</td><td>${esc(cheap)}</td></tr>`}).join("")||'<tr><td colspan="4" class="muted">Sin resultados.</td></tr>';}
+$("q").addEventListener("input",draw);draw();
+</script></body></html>
