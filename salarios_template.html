@@ -125,6 +125,7 @@ document.querySelectorAll("th.s").forEach(th=>th.addEventListener("click",()=>{c
 function evo(){const u=U[+$("es").value],n=$("en").value;if(!u||!u.aj.length){$("echart").innerHTML="";$("eres").textContent="Sin ajustes leídos para este subgrupo.";return}
  const pts=[];let idx=100;const f0=u.aj[0][0];const ui0=uiAt(f0);
  for(const [f,v] of u.aj){if(f>HOY)break;const p=val(v,n);if(p!=null)idx*=1+p/100;pts.push([f,idx])}
+ const fe=u.aj.map(x=>x[0]).filter(f=>f<=HOY);let gap=fe.length&&meses(fe[fe.length-1],HOY)>7;for(let i=1;i<fe.length;i++)if(meses(fe[i-1],fe[i])>7)gap=true;
  const end=HOY;const sal=[[f0,100]];let cur=100;for(const [f,v] of pts){sal.push([f,cur]);cur=v;sal.push([f,v])}sal.push([end,cur]);
  const pr=ui.filter(([f])=>f>=f0).map(([f,v])=>[f,ui0?v/ui0*100:null]).filter(x=>x[1]);if(!pr.length||!ui0){$("echart").innerHTML="";$("eres").textContent="Sin datos de inflación para el período.";return}
  const W=900,H=260,P=34,t0=new Date(f0).getTime(),t1=new Date(end).getTime(),ys=[...sal.map(x=>x[1]),...pr.map(x=>x[1])],y0=Math.min(...ys)-1,y1=Math.max(...ys)+1;
@@ -132,7 +133,7 @@ function evo(){const u=U[+$("es").value],n=$("en").value;if(!u||!u.aj.length){$(
  const path=a=>a.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+","+Y(p[1]).toFixed(1)).join("");
  const yt=[y0,(y0+y1)/2,y1].map(v=>`<text x="2" y="${Y(v)+4}">${v.toFixed(0)}</text><line x1="${P}" x2="${W-P}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--rule)"/>`).join("");
  $("echart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Salario frente a precios">${yt}<path d="${path(pr)}" fill="none" stroke="var(--accent2)" stroke-width="2"/><path d="${path(sal)}" fill="none" stroke="var(--accent)" stroke-width="2.5"/><text x="${P}" y="${H-8}">${fmt(f0)}</text><text x="${W-P-60}" y="${H-8}">${fmt(end)}</text></svg>`;
- const s=cur/100,p=pr[pr.length-1][1]/100;$("eres").innerHTML=`Desde el ${fmt(f0)}: ajustes nominales <b>${pct(s-1)}</b> · precios ${pct(p-1)} · poder de compra <span class="${s/p>=1?"good":"bad"}"><b>${pct(s/p-1)}</b></span>.<br><span class="muted">Base 100 = ${fmt(f0)}. Solo cuenta los ajustes de las actas leídas; no incluye correctivos aplicados después.</span>`}
+ const s=cur/100,p=pr[pr.length-1][1]/100;$("eres").innerHTML=`Desde el ${fmt(f0)}: ajustes nominales <b>${pct(s-1)}</b> · precios ${pct(p-1)} · poder de compra <span class="${s/p>=1?"good":"bad"}"><b>${pct(s/p-1)}</b></span>.<br><span class="muted">Base 100 = ${fmt(f0)}. Solo cuenta los ajustes de las actas leídas; no incluye correctivos aplicados después.</span>${gap?`<br><span class="bad">Faltan ajustes en las actas leídas para este período: el resultado puede subestimar el aumento real. Revisá el acta.</span>`:""}`}
 $("eg").addEventListener("input",()=>{fillS("eg","es",1);evo()});["es","en"].forEach(i=>$(i).addEventListener("input",evo));evo();
 // actas
 function actas(){const g=$("ag").value;$("alist").innerHTML=U.filter(u=>u.g===g).map(u=>`<details><summary>${esc(u.n)} <span class="muted">· ${u.docs.length} documentos · último ${esc(u.ult.length>4?fmt(u.ult):u.ult)}</span></summary>
